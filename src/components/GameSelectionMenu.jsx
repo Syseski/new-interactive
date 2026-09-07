@@ -1,3 +1,4 @@
+import { getAssetUrl } from "../utils/assetHelper";
 import React, { useState } from 'react';
 import { playPopSound, playWhooshSound } from '../utils/soundEffects';
 import { Lock, Sparkles, ArrowRight, Settings } from 'lucide-react';
@@ -13,7 +14,7 @@ const CuteBoyMascot = ({ className = "w-12 h-16 sm:w-16 sm:h-20 md:w-20 md:h-24"
   if (!imgError) {
     return (
       <img
-        src="/images/boy.png"
+        src={getAssetUrl("/images/boy.png")}
         alt="Kanak-kanak Lelaki"
         onError={() => setImgError(true)}
         className={`${className} object-contain filter drop-shadow-lg flex-shrink-0 animate-float`}
@@ -95,7 +96,7 @@ const CuteGirlMascot = ({ className = "w-12 h-16 sm:w-16 sm:h-20 md:w-20 md:h-24
   if (!imgError) {
     return (
       <img
-        src="/images/girl.png"
+        src={getAssetUrl("/images/girl.png")}
         alt="Kanak-kanak Perempuan"
         onError={() => setImgError(true)}
         className={`${className} object-contain filter drop-shadow-lg flex-shrink-0 animate-float`}
@@ -193,7 +194,7 @@ const CuteRabbitReadingBook = () => {
       <div className="flex flex-col items-center mb-1">
         {!booksImgError ? (
           <img
-            src="/images/books.png"
+            src={getAssetUrl("/images/books.png")}
             alt="Buku Cerita"
             onError={() => setBooksImgError(true)}
             className="w-10 h-10 sm:w-14 sm:h-14 md:w-18 md:h-18 object-contain drop-shadow-md"
@@ -224,7 +225,7 @@ const CuteRabbitReadingBook = () => {
       <div className="animate-bounce" style={{ animationDuration: '3.5s' }}>
         {!rabbitImgError ? (
           <img
-            src="/images/rabbit.png"
+            src={getAssetUrl("/images/rabbit.png")}
             alt="Arnab Membaca Buku"
             onError={() => setRabbitImgError(true)}
             className="w-16 h-16 sm:w-22 sm:h-22 md:w-28 md:h-28 object-contain drop-shadow-xl"
@@ -870,20 +871,20 @@ const NatureParkBackground = () => {
       {!cloudImgError ? (
         <>
           <img
-            src="/images/cloud.png"
+            src={getAssetUrl("/images/cloud.png")}
             alt="Awan"
             onError={() => setCloudImgError(true)}
             className="absolute top-2 left-4 w-28 sm:w-40 object-contain drop-shadow-md opacity-90 animate-float"
           />
           <img
-            src="/images/cloud.png"
+            src={getAssetUrl("/images/cloud.png")}
             alt="Awan"
             onError={() => setCloudImgError(true)}
             className="absolute top-8 right-6 w-36 sm:w-52 object-contain drop-shadow-md opacity-85 animate-float"
             style={{ animationDelay: '1.6s' }}
           />
           <img
-            src="/images/cloud.png"
+            src={getAssetUrl("/images/cloud.png")}
             alt="Awan"
             onError={() => setCloudImgError(true)}
             className="absolute top-16 left-1/3 w-24 sm:w-36 object-contain drop-shadow-sm opacity-75 animate-float hidden sm:block"
@@ -1353,7 +1354,7 @@ export default function GameSelectionMenu({
           {selectedSubject === 'literasi' && !literasiTitleImgError ? (
             <div className="animate-title-bounce">
               <img
-                src="/images/literasi-title.png"
+                src={getAssetUrl("/images/literasi-title.png")}
                 alt="LITERASI"
                 onError={() => setLiterasiTitleImgError(true)}
                 className="h-12 sm:h-16 md:h-20 max-w-[85vw] object-contain drop-shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer filter brightness-105"
@@ -1362,7 +1363,7 @@ export default function GameSelectionMenu({
           ) : selectedSubject === 'numerasi' && !numerasiTitleImgError ? (
             <div className="animate-title-bounce">
               <img
-                src="/images/numerasi-title.png"
+                src={getAssetUrl("/images/numerasi-title.png")}
                 alt="NUMERASI"
                 onError={() => setNumerasiTitleImgError(true)}
                 className="h-12 sm:h-16 md:h-20 max-w-[85vw] object-contain drop-shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer filter brightness-105"

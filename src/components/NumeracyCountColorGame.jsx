@@ -1,3 +1,4 @@
+import { getAssetUrl } from "../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -25,7 +26,7 @@ import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllust
 // Custom Brush Image component supporting user's custom image (public/images/brush.png or uploaded image)
 function CustomBrushIcon({ activeColor = '#38BDF8', className = "w-7 h-7 sm:w-8 sm:h-8", allowUpload = false }) {
   const [imgSrc, setImgSrc] = useState(() => {
-    return localStorage.getItem('custom_brush_image') || '/images/brush.png';
+    return localStorage.getItem('custom_brush_image') || getAssetUrl('/images/brush.png');
   });
   const [imgFailed, setImgFailed] = useState(false);
   const fileInputRef = React.useRef(null);
@@ -70,12 +71,12 @@ function CustomBrushIcon({ activeColor = '#38BDF8', className = "w-7 h-7 sm:w-8 
           alt="Berus Mewarna"
           className={`${className} object-contain filter drop-shadow-md select-none transition-transform group-hover:scale-110`}
           onError={() => {
-            if (imgSrc === '/images/brush.png') {
-              setImgSrc('/images/brush.jpg');
+            if (imgSrc.includes('/images/brush.png') || imgSrc === '/images/brush.png') {
+              setImgSrc(getAssetUrl('/images/brush.jpg'));
             } else if (imgSrc === '/images/brush.jpg') {
-              setImgSrc('/images/brush.svg');
+              setImgSrc(getAssetUrl('/images/brush.svg'));
             } else if (imgSrc === '/images/brush.svg') {
-              setImgSrc('/images/brush.webp');
+              setImgSrc(getAssetUrl('/images/brush.webp'));
             } else {
               setImgFailed(true);
             }

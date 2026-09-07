@@ -1,3 +1,4 @@
+import { getAssetUrl } from "../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -27,7 +28,7 @@ const GAME_SETS = [
     title: 'Set 1',
     subtitle: 'Cikgu Fatin',
     instruction: 'Isi menggunakan jawapan yang betul.',
-    imageSrc: '/images/fill-in/scene.png',
+    imageSrc: getAssetUrl('/images/fill-in/scene.png'),
     fallbackType: 'classroom',
     wordOptions: ['Baik', 'Sayang', 'Membantu', 'Cikgu'],
     sentences: [
@@ -66,7 +67,7 @@ const GAME_SETS = [
     title: 'Set 2',
     subtitle: 'Mencuci Motorsikal',
     instruction: 'Isi menggunakan jawapan yang betul.',
-    imageSrc: '/images/fill-in/scene2.png',
+    imageSrc: getAssetUrl('/images/fill-in/scene2.png'),
     fallbackType: 'motorcycle',
     wordOptions: ['Membantu', 'Mengelap', 'Mencuci'],
     sentences: [

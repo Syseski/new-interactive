@@ -1,3 +1,4 @@
+import { getAssetUrl } from "../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -113,11 +114,11 @@ function CustomObjectIllustration({ type, className = "w-full h-full" }) {
 
 // 5 OBJECTS (SINGLE SET)
 const MATCH_ITEMS = [
-  { id: 1, number: 1, word: 'Kucing', type: 'kucing', imageSrc: '/images/match/1.png' },
-  { id: 2, number: 2, word: 'Kereta', type: 'kereta', imageSrc: '/images/match/2.png' },
-  { id: 3, number: 3, word: 'Kasut', type: 'kasut', imageSrc: '/images/match/3.png' },
-  { id: 4, number: 4, word: 'Kerusi', type: 'kerusi', imageSrc: '/images/match/4.png' },
-  { id: 5, number: 5, word: 'Burung', type: 'burung', imageSrc: '/images/match/5.png' },
+  { id: 1, number: 1, word: 'Kucing', type: 'kucing', imageSrc: getAssetUrl('/images/match/1.png') },
+  { id: 2, number: 2, word: 'Kereta', type: 'kereta', imageSrc: getAssetUrl('/images/match/2.png') },
+  { id: 3, number: 3, word: 'Kasut', type: 'kasut', imageSrc: getAssetUrl('/images/match/3.png') },
+  { id: 4, number: 4, word: 'Kerusi', type: 'kerusi', imageSrc: getAssetUrl('/images/match/4.png') },
+  { id: 5, number: 5, word: 'Burung', type: 'burung', imageSrc: getAssetUrl('/images/match/5.png') },
 ];
 
 // Helper to shuffle an array

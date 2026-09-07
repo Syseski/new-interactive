@@ -1,3 +1,4 @@
+import { getAssetUrl } from "../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -35,7 +36,7 @@ function ObjectItem({ type, size = 'normal' }) {
   if (!imgError) {
     return (
       <img
-        src={`/images/numerasi-compare/${type}.png`}
+        src={getAssetUrl(`/images/numerasi-compare/${type}.png`)}
         alt={type}
         onError={() => setImgError(true)}
         className={`${sizeClasses} object-contain drop-shadow-md hover:scale-115 transition-transform duration-200 cursor-pointer animate-float`}

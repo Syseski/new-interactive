@@ -1,3 +1,4 @@
+import { getAssetUrl } from "./assetHelper";
 export const PHONICS_WORDS = {
   a: { word: 'Ayam', emoji: '🐔' },
   b: { word: 'Bola', emoji: '⚽' },
@@ -65,11 +66,11 @@ export function initBGM() {
   if (bgmAudio || typeof window === 'undefined') return;
   
   bgmAudio = new Audio();
-  bgmAudio.src = '/audio/bgm.mp3';
+  bgmAudio.src = getAssetUrl(getAssetUrl('/audio/bgm.mp3'));
   bgmAudio.loop = true;
   bgmAudio.volume = bgmVolume;
 
-  const fallbackSources = ['/audio/bgm.mp3', '/audio/music.mp3', '/audio/background.mp3', '/bgm.mp3'];
+  const fallbackSources = [getAssetUrl('/audio/bgm.mp3'), getAssetUrl('/audio/music.mp3'), getAssetUrl('/audio/background.mp3'), getAssetUrl('/bgm.mp3')];
   let currentSourceIndex = 0;
 
   bgmAudio.addEventListener('error', () => {
@@ -225,7 +226,7 @@ export function speakLetter(letter) {
   if (!soundEnabled || !voiceEnabled) return;
 
   const upper = (letter || '').toUpperCase();
-  const audioSrc = `/audio/letters/${upper}.mp3`;
+  const audioSrc = getAssetUrl(`/audio/letters/${upper}.mp3`);
 
   try {
     // Stop previous audio playback & cancel any ongoing TTS
@@ -321,7 +322,7 @@ export function speakNumber(num) {
     }
 
     // 2. Check if custom audio file exists in public/audio/numbers/${num}.mp3 or /audio/nombor/${num}.mp3
-    const audioSrc = `/audio/numbers/${numKey}.mp3`;
+    const audioSrc = getAssetUrl(`/audio/numbers/${numKey}.mp3`);
     if (!audioCache[`num_${numKey}`]) {
       audioCache[`num_${numKey}`] = new Audio(audioSrc);
     }

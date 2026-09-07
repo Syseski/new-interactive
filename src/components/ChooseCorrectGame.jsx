@@ -1,3 +1,4 @@
+import { getAssetUrl } from "../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -277,7 +278,7 @@ const QUIZ_DATA = [
     id: 1,
     number: 1,
     type: 'gitar',
-    imageSrc: '/images/choose-correct/1.png',
+    imageSrc: getAssetUrl('/images/choose-correct/1.png'),
     options: ['Gitar', 'Piano'],
     answer: 'Gitar',
   },
@@ -285,7 +286,7 @@ const QUIZ_DATA = [
     id: 2,
     number: 2,
     type: 'tuala',
-    imageSrc: '/images/choose-correct/2.png',
+    imageSrc: getAssetUrl('/images/choose-correct/2.png'),
     options: ['Tuala', 'Kuaci'],
     answer: 'Tuala',
   },
@@ -293,7 +294,7 @@ const QUIZ_DATA = [
     id: 3,
     number: 3,
     type: 'rusa',
-    imageSrc: '/images/choose-correct/3.png',
+    imageSrc: getAssetUrl('/images/choose-correct/3.png'),
     options: ['Rusa', 'Kuda'],
     answer: 'Rusa',
   },
@@ -301,7 +302,7 @@ const QUIZ_DATA = [
     id: 4,
     number: 4,
     type: 'daun',
-    imageSrc: '/images/choose-correct/4.png',
+    imageSrc: getAssetUrl('/images/choose-correct/4.png'),
     options: ['Daun', 'Daging'],
     answer: 'Daun',
   },

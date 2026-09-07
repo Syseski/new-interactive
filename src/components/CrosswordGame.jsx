@@ -1,3 +1,4 @@
+import { getAssetUrl } from "../utils/assetHelper";
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -36,7 +37,7 @@ const CROSSWORD_SETS = [
         start: { r: 0, c: 0 },
         length: 6,
         label: '1 Melintang: Kucing',
-        imageSrc: '/images/crossword/kucing.png',
+        imageSrc: getAssetUrl('/images/crossword/kucing.png'),
         type: 'kucing',
       },
       {
@@ -47,7 +48,7 @@ const CROSSWORD_SETS = [
         start: { r: 0, c: 0 },
         length: 4,
         label: '2 Menegak: Kuda',
-        imageSrc: '/images/crossword/kuda.png',
+        imageSrc: getAssetUrl('/images/crossword/kuda.png'),
         type: 'kuda',
       },
       {
@@ -58,7 +59,7 @@ const CROSSWORD_SETS = [
         start: { r: 0, c: 3 },
         length: 4,
         label: '3 Menegak: Ikan',
-        imageSrc: '/images/crossword/ikan.png',
+        imageSrc: getAssetUrl('/images/crossword/ikan.png'),
         type: 'ikan',
       },
       {
@@ -69,7 +70,7 @@ const CROSSWORD_SETS = [
         start: { r: 2, c: 3 },
         length: 4,
         label: '4 Melintang: Ayam',
-        imageSrc: '/images/crossword/ayam.png',
+        imageSrc: getAssetUrl('/images/crossword/ayam.png'),
         type: 'ayam',
       },
     ],
@@ -89,7 +90,7 @@ const CROSSWORD_SETS = [
         start: { r: 0, c: 0 },
         length: 5,
         label: '1 Melintang: Betik',
-        imageSrc: '/images/crossword/betik.png',
+        imageSrc: getAssetUrl('/images/crossword/betik.png'),
         type: 'betik',
       },
       {
@@ -100,7 +101,7 @@ const CROSSWORD_SETS = [
         start: { r: 0, c: 1 },
         length: 4,
         label: '2 Menegak: Epal',
-        imageSrc: '/images/crossword/epal.png',
+        imageSrc: getAssetUrl('/images/crossword/epal.png'),
         type: 'epal',
       },
       {
@@ -111,7 +112,7 @@ const CROSSWORD_SETS = [
         start: { r: 0, c: 4 },
         length: 6,
         label: '3 Menegak: Kelapa',
-        imageSrc: '/images/crossword/kelapa.png',
+        imageSrc: getAssetUrl('/images/crossword/kelapa.png'),
         type: 'kelapa',
       },
       {
@@ -122,7 +123,7 @@ const CROSSWORD_SETS = [
         start: { r: 3, c: 4 },
         length: 6,
         label: '4 Melintang: Anggur',
-        imageSrc: '/images/crossword/anggur.png',
+        imageSrc: getAssetUrl('/images/crossword/anggur.png'),
         type: 'anggur',
       },
     ],
