@@ -51,18 +51,21 @@ export default function App() {
     'Tekan mana-mana huruf kelabu untuk lihat animasi garisan huruf!'
   );
 
-  // Auto-play BGM on first user interaction
+  // Auto-play BGM on first user interaction (browser policy)
   useEffect(() => {
     const handleFirstInteraction = () => {
       playBGM();
       window.removeEventListener('click', handleFirstInteraction);
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('pointerdown', handleFirstInteraction);
     };
-    window.addEventListener('click', handleFirstInteraction);
-    window.addEventListener('touchstart', handleFirstInteraction);
+    window.addEventListener('click', handleFirstInteraction, { passive: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true });
     return () => {
       window.removeEventListener('click', handleFirstInteraction);
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('pointerdown', handleFirstInteraction);
     };
   }, []);
 

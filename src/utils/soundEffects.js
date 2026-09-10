@@ -66,7 +66,7 @@ export function initBGM() {
   if (bgmAudio || typeof window === 'undefined') return;
   
   bgmAudio = new Audio();
-  bgmAudio.src = getAssetUrl(getAssetUrl('/audio/bgm.mp3'));
+  bgmAudio.src = getAssetUrl('/audio/bgm.mp3');
   bgmAudio.loop = true;
   bgmAudio.volume = bgmVolume;
 

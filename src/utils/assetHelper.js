@@ -8,9 +8,19 @@ export const getAssetUrl = (path) => {
   if (path.startsWith('data:') || path.startsWith('blob:') || path.startsWith('http://') || path.startsWith('https://')) {
     return path;
   }
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   const baseUrl = import.meta.env.BASE_URL || '/';
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+  // If path already contains base, avoid double prefixing
+  if (normalizedBase !== '/' && (path.startsWith(normalizedBase) || path.startsWith(baseUrl))) {
+    return path;
+  }
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  const baseWithoutSlash = normalizedBase.startsWith('/') ? normalizedBase.slice(1) : normalizedBase;
+  if (baseWithoutSlash && baseWithoutSlash !== '' && cleanPath.startsWith(baseWithoutSlash)) {
+    return `/${cleanPath}`;
+  }
+
   return `${normalizedBase}${cleanPath}`;
 };
 
