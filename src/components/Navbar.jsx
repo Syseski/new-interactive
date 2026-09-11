@@ -63,6 +63,11 @@ export default function Navbar({
               🔢 2. Susun Nombor
             </span>
           )}
+                    {activeGame === 'num_sifir' && (
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 9. Cabaran Sifir
+            </span>
+          )}
           {activeGame === 'num_explore' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
               🔢 3. Kenal & Sebut Nombor

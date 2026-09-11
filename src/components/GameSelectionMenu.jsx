@@ -1121,6 +1121,16 @@ export default function GameSelectionMenu({
     },
   ];
 
+  const MultiplicationSifirIcon = () => (
+  <svg className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none">
+    <rect x="10" y="10" width="80" height="80" rx="16" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="2.5" />
+    <circle cx="50" cy="50" r="28" fill="#F59E0B" />
+    <path d="M38 38 L62 62 M62 38 L38 62" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" />
+    <circle cx="24" cy="24" r="5" fill="#EF4444" />
+    <circle cx="76" cy="76" r="5" fill="#10B981" />
+  </svg>
+);
+
   const NUMERACY_GAMES_LIST = [
     {
       id: 1,
@@ -1237,16 +1247,16 @@ export default function GameSelectionMenu({
     {
       id: 9,
       number: '9',
-      title: 'Pecahan Mudah',
-      subtitle: 'Separuh & Suku',
-      active: false,
-      gameId: 'num_fraction',
-      numColor: 'from-lime-400 to-emerald-500 border-lime-300 text-white',
-      titleColor: 'text-lime-600',
-      bgHover: 'hover:bg-lime-50/90 hover:border-lime-400 hover:shadow-md',
-      cardBorder: 'border-lime-300/80',
-      cardBg: 'bg-lime-50/60',
-      icon: <PizzaFractionIcon />,
+      title: 'Cabaran Sifir',
+      subtitle: 'Sifir 2, 4, 6 & Lebih',
+      active: true,
+      gameId: 'num_sifir',
+      numColor: 'from-amber-400 to-orange-500 border-amber-300 text-white',
+      titleColor: 'text-amber-600',
+      bgHover: 'hover:bg-amber-50/90 hover:border-amber-400 hover:shadow-md',
+      cardBorder: 'border-amber-300/80',
+      cardBg: 'bg-amber-50/60',
+      icon: <MultiplicationSifirIcon />,
     },
     {
       id: 10,
