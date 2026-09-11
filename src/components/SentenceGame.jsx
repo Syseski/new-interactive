@@ -183,6 +183,8 @@ export default function SentenceGame({ orientation, onBackToMenu, onOpenSettings
 
   // Question validation state: 'idle', 'correct', 'wrong'
   const [feedbackStatus, setFeedbackStatus] = useState('idle');
+  // Track saved state per question (placed, available, feedbackStatus)
+  const [savedAnswers, setSavedAnswers] = useState({});
   // Completed questions tracking: { 'set1-1': true }
   const [completedQuestions, setCompletedQuestions] = useState({});
   // Completed sets tracking: { 'set1': true }
@@ -193,16 +195,32 @@ export default function SentenceGame({ orientation, onBackToMenu, onOpenSettings
   // Initialize or reset question state
   useEffect(() => {
     if (!currentQ) return;
+    const qKey = `${currentSet.id}-${currentQ.id}`;
+    const saved = savedAnswers[qKey];
 
-    setPlacedWords(new Array(currentQ.correctWords.length).fill(null));
-
-    const pool = currentQ.shuffledWords.map((word, idx) => ({
-      id: `${questionIndex}-${idx}-${word}`,
-      text: word,
-      originalIdx: idx,
-    }));
-    setAvailableWords(pool);
-    setFeedbackStatus('idle');
+    if (saved) {
+      setPlacedWords(saved.placed);
+      setAvailableWords(saved.available);
+      setFeedbackStatus(saved.feedbackStatus);
+    } else if (completedQuestions[qKey]) {
+      const correctPlaced = currentQ.correctWords.map((word, idx) => ({
+        id: `${questionIndex}-${idx}-${word}`,
+        text: word,
+        originalIdx: idx,
+      }));
+      setPlacedWords(correctPlaced);
+      setAvailableWords([]);
+      setFeedbackStatus('correct');
+    } else {
+      setPlacedWords(new Array(currentQ.correctWords.length).fill(null));
+      const pool = currentQ.shuffledWords.map((word, idx) => ({
+        id: `${questionIndex}-${idx}-${word}`,
+        text: word,
+        originalIdx: idx,
+      }));
+      setAvailableWords(pool);
+      setFeedbackStatus('idle');
+    }
   }, [questionIndex, currentSetIndex]);
 
   // Handle selecting a word from available pool
@@ -220,9 +238,19 @@ export default function SentenceGame({ orientation, onBackToMenu, onOpenSettings
     const newAvailable = availableWords.filter((w) => w.id !== item.id);
     setAvailableWords(newAvailable);
 
+    const qKey = `${currentSet.id}-${currentQ.id}`;
+    setSavedAnswers((prev) => ({
+      ...prev,
+      [qKey]: {
+        placed: newPlaced,
+        available: newAvailable,
+        feedbackStatus: 'idle',
+      },
+    }));
+
     // Check answer when all words are placed
     if (newPlaced.every((w) => w !== null)) {
-      validateAnswer(newPlaced);
+      validateAnswer(newPlaced, newAvailable);
     }
   };
 
@@ -237,25 +265,45 @@ export default function SentenceGame({ orientation, onBackToMenu, onOpenSettings
     newPlaced[slotIdx] = null;
     setPlacedWords(newPlaced);
 
-    setAvailableWords((prev) => [...prev, item]);
+    const newAvailable = [...availableWords, item];
+    setAvailableWords(newAvailable);
     setFeedbackStatus('idle');
+
+    const qKey = `${currentSet.id}-${currentQ.id}`;
+    setSavedAnswers((prev) => ({
+      ...prev,
+      [qKey]: {
+        placed: newPlaced,
+        available: newAvailable,
+        feedbackStatus: 'idle',
+      },
+    }));
   };
 
   // Validate placed words against correct sentence
-  const validateAnswer = (placedArray) => {
-    const constructedSentence = placedArray.map((w) => (w ? w.text : '')).join(' ');
+  const validateAnswer = (placedArray, currentPool = availableWords) => {
     const isExactMatch = placedArray.every(
       (w, idx) => w && w.text.trim() === currentQ.correctWords[idx].trim()
     );
+    const qKey = `${currentSet.id}-${currentQ.id}`;
 
     if (isExactMatch) {
       // Correct!
       setFeedbackStatus('correct');
       playMatchSuccessSound();
 
+      setSavedAnswers((prev) => ({
+        ...prev,
+        [qKey]: {
+          placed: placedArray,
+          available: [],
+          feedbackStatus: 'correct',
+        },
+      }));
+
       const newCompleted = {
         ...completedQuestions,
-        [`${currentSet.id}-${currentQ.id}`]: true,
+        [qKey]: true,
       };
       setCompletedQuestions(newCompleted);
 
@@ -274,13 +322,23 @@ export default function SentenceGame({ orientation, onBackToMenu, onOpenSettings
       // Wrong!
       setFeedbackStatus('wrong');
       playWhooshSound();
+
+      setSavedAnswers((prev) => ({
+        ...prev,
+        [qKey]: {
+          placed: placedArray,
+          available: currentPool,
+          feedbackStatus: 'wrong',
+        },
+      }));
     }
   };
 
   // Reset current question
   const handleResetCurrentQuestion = () => {
     playPopSound();
-    setPlacedWords(new Array(currentQ.correctWords.length).fill(null));
+    const emptySlots = new Array(currentQ.correctWords.length).fill(null);
+    setPlacedWords(emptySlots);
     const pool = currentQ.shuffledWords.map((word, idx) => ({
       id: `${questionIndex}-${idx}-${word}`,
       text: word,
@@ -288,6 +346,27 @@ export default function SentenceGame({ orientation, onBackToMenu, onOpenSettings
     }));
     setAvailableWords(pool);
     setFeedbackStatus('idle');
+
+    const qKey = `${currentSet.id}-${currentQ.id}`;
+    setSavedAnswers((prev) => {
+      const next = { ...prev };
+      delete next[qKey];
+      return next;
+    });
+    setCompletedQuestions((prev) => {
+      const next = { ...prev };
+      delete next[qKey];
+      return next;
+    });
+  };
+
+  // Reset entire set from start
+  const handleResetFullSet = () => {
+    playPopSound();
+    setSavedAnswers({});
+    setCompletedQuestions({});
+    setQuestionIndex(0);
+    setShowCelebration(false);
   };
 
   // Switch sets
@@ -656,11 +735,7 @@ export default function SentenceGame({ orientation, onBackToMenu, onOpenSettings
               ) : null}
 
               <button
-                onClick={() => {
-                  setShowCelebration(false);
-                  setQuestionIndex(0);
-                  handleResetCurrentQuestion();
-                }}
+                onClick={handleResetFullSet}
                 className="w-full py-2.5 px-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black rounded-xl text-sm shadow-md transition-all active:scale-95 font-['Fredoka'] cursor-pointer"
               >
                 Main Semula Set Ini

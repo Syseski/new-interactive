@@ -358,6 +358,8 @@ export default function NumeracyOrderGame({
   const [placedSlots, setPlacedSlots] = useState([]); // Array of numbers or null for target slots
   const [availableBank, setAvailableBank] = useState([]); // Array of numbers remaining in bank
   const [selectedBankIndex, setSelectedBankIndex] = useState(null);
+  // Saved question answers map { 'set0-q0': { placedSlots, availableBank, isSuccess } }
+  const [savedAnswers, setSavedAnswers] = useState({});
 
   // Status & Feedback states
   const [isChecking, setIsChecking] = useState(false);
@@ -379,7 +381,6 @@ export default function NumeracyOrderGame({
 
   const resetQuestionState = () => {
     setIsChecking(false);
-    setIsSuccess(false);
     setIsWrong(false);
     setSelectedBankIndex(null);
 
@@ -389,22 +390,35 @@ export default function NumeracyOrderGame({
 
     if (!question) return;
 
-    if (question.type === 'missing') {
-      // Missing number mode: prepare slots from pattern with null at missing index
-      const slots = [...question.sequence];
-      setPlacedSlots(slots);
-      setAvailableBank([...question.options]);
-      setMascotDialogue(`Pilih nombor yang sesuai untuk isi tempat kosong! 🧩`);
+    const qKey = `${currentSet.id}-${question.id}`;
+    const saved = savedAnswers[qKey];
+
+    if (saved) {
+      setPlacedSlots(saved.placedSlots);
+      setAvailableBank(saved.availableBank);
+      setIsSuccess(saved.isSuccess);
+      if (saved.isSuccess) {
+        setMascotDialogue('Hebat! Susunan nombor soalan ini telah tepat! 🎉');
+      }
     } else {
-      // Arrange order mode: slots are empty based on correctOrder length
-      const emptySlots = new Array(question.correctOrder.length).fill(null);
-      setPlacedSlots(emptySlots);
-      setAvailableBank([...question.initialBank]);
-      
-      const badge = question.mode === 'descending' || currentSet.mode === 'descending'
-        ? 'Tertib Menurun (Besar ke Kecil)'
-        : 'Tertib Menaik (Kecil ke Besar)';
-      setMascotDialogue(`Susun nombor mengikut ${badge}! 🚂`);
+      setIsSuccess(false);
+      if (question.type === 'missing') {
+        // Missing number mode: prepare slots from pattern with null at missing index
+        const slots = [...question.sequence];
+        setPlacedSlots(slots);
+        setAvailableBank([...question.options]);
+        setMascotDialogue(`Pilih nombor yang sesuai untuk isi tempat kosong! 🧩`);
+      } else {
+        // Arrange order mode: slots are empty based on correctOrder length
+        const emptySlots = new Array(question.correctOrder.length).fill(null);
+        setPlacedSlots(emptySlots);
+        setAvailableBank([...question.initialBank]);
+        
+        const badge = question.mode === 'descending' || currentSet.mode === 'descending'
+          ? 'Tertib Menurun (Besar ke Kecil)'
+          : 'Tertib Menaik (Kecil ke Besar)';
+        setMascotDialogue(`Susun nombor mengikut ${badge}! 🚂`);
+      }
     }
   };
 
@@ -505,19 +519,29 @@ export default function NumeracyOrderGame({
     );
 
     if (isCorrect) {
-      handleCorrect();
+      handleCorrect(slotsToTest);
     } else {
       handleIncorrect();
     }
   };
 
-  const handleCorrect = () => {
+  const handleCorrect = (finalSlots = placedSlots) => {
     playMatchSuccessSound();
     setIsSuccess(true);
     setIsWrong(false);
     setStreakCount((prev) => prev + 1);
     setTotalStars((prev) => prev + 1);
     setMascotDialogue('Hebat! Susunan nombor anda tepat sekali! 🎉');
+
+    const qKey = `${currentSet.id}-${currentQuestion.id}`;
+    setSavedAnswers((prev) => ({
+      ...prev,
+      [qKey]: {
+        placedSlots: finalSlots,
+        availableBank: [],
+        isSuccess: true,
+      },
+    }));
 
     confetti({
       particleCount: 50,
@@ -563,6 +587,7 @@ export default function NumeracyOrderGame({
 
   const handleSelectSet = (setIdx) => {
     playPopSound();
+    setSavedAnswers({});
     setCurrentSetIndex(setIdx);
     setCurrentQuestionIndex(0);
     setShowVictoryModal(false);
@@ -1002,7 +1027,7 @@ export default function NumeracyOrderGame({
               <button
                 onClick={() => {
                   playPopSound();
-                  resetQuestionState();
+                  setSavedAnswers({});
                   setCurrentQuestionIndex(0);
                   setShowVictoryModal(false);
                 }}

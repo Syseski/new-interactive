@@ -375,6 +375,8 @@ export default function SyllableGame({ orientation, onBackToMenu, onOpenSettings
 
   // Question validation state: 'idle', 'correct', 'wrong'
   const [feedbackStatus, setFeedbackStatus] = useState('idle');
+  // Track saved state per item (placed, available, feedbackStatus)
+  const [savedAnswers, setSavedAnswers] = useState({});
   // Completed item tracking for current set
   const [completedItems, setCompletedItems] = useState({});
   // Completed set tracking
@@ -385,18 +387,32 @@ export default function SyllableGame({ orientation, onBackToMenu, onOpenSettings
   // Initialize or update state when item or set changes
   useEffect(() => {
     if (!currentItem) return;
+    const itemKey = `${currentSet.id}-${currentItem.id}`;
+    const saved = savedAnswers[itemKey];
 
-    // Reset placed slots
-    setPlacedSyllables(new Array(currentItem.syllables.length).fill(null));
-
-    // Initialize available pool with unique keys
-    const pool = currentItem.shuffled.map((syl, idx) => ({
-      id: `${itemIndex}-${idx}-${syl}`,
-      text: syl,
-      originalIdx: idx,
-    }));
-    setAvailableSyllables(pool);
-    setFeedbackStatus('idle');
+    if (saved) {
+      setPlacedSyllables(saved.placed);
+      setAvailableSyllables(saved.available);
+      setFeedbackStatus(saved.feedbackStatus);
+    } else if (completedItems[itemKey]) {
+      const correctPlaced = currentItem.syllables.map((syl, idx) => ({
+        id: `${itemIndex}-${idx}-${syl}`,
+        text: syl,
+        originalIdx: idx,
+      }));
+      setPlacedSyllables(correctPlaced);
+      setAvailableSyllables([]);
+      setFeedbackStatus('correct');
+    } else {
+      setPlacedSyllables(new Array(currentItem.syllables.length).fill(null));
+      const pool = currentItem.shuffled.map((syl, idx) => ({
+        id: `${itemIndex}-${idx}-${syl}`,
+        text: syl,
+        originalIdx: idx,
+      }));
+      setAvailableSyllables(pool);
+      setFeedbackStatus('idle');
+    }
   }, [itemIndex, currentSetIndex]);
 
   // Handle placing a syllable from pool to the first empty slot
@@ -417,9 +433,19 @@ export default function SyllableGame({ orientation, onBackToMenu, onOpenSettings
     const newAvailable = availableSyllables.filter((s) => s.id !== item.id);
     setAvailableSyllables(newAvailable);
 
+    const itemKey = `${currentSet.id}-${currentItem.id}`;
+    setSavedAnswers((prev) => ({
+      ...prev,
+      [itemKey]: {
+        placed: newPlaced,
+        available: newAvailable,
+        feedbackStatus: 'idle',
+      },
+    }));
+
     // Check answer if all slots are filled
     if (newPlaced.every((s) => s !== null)) {
-      validateAnswer(newPlaced);
+      validateAnswer(newPlaced, newAvailable);
     }
   };
 
@@ -435,27 +461,48 @@ export default function SyllableGame({ orientation, onBackToMenu, onOpenSettings
     setPlacedSyllables(newPlaced);
 
     // Add back to pool
-    setAvailableSyllables((prev) => [...prev, item]);
+    const newAvailable = [...availableSyllables, item];
+    setAvailableSyllables(newAvailable);
     setFeedbackStatus('idle');
+
+    const itemKey = `${currentSet.id}-${currentItem.id}`;
+    setSavedAnswers((prev) => ({
+      ...prev,
+      [itemKey]: {
+        placed: newPlaced,
+        available: newAvailable,
+        feedbackStatus: 'idle',
+      },
+    }));
   };
 
   // Validate current placed sequence
-  const validateAnswer = (placedArray) => {
+  const validateAnswer = (placedArray, currentPool = availableSyllables) => {
     const constructedWord = placedArray
       .map((item) => (item ? item.text : ''))
       .join('')
       .toUpperCase();
 
     const targetWord = currentItem.word.toUpperCase();
+    const itemKey = `${currentSet.id}-${currentItem.id}`;
 
     if (constructedWord === targetWord) {
       // Correct!
       setFeedbackStatus('correct');
       playMatchSuccessSound();
 
+      setSavedAnswers((prev) => ({
+        ...prev,
+        [itemKey]: {
+          placed: placedArray,
+          available: [],
+          feedbackStatus: 'correct',
+        },
+      }));
+
       const newCompleted = {
         ...completedItems,
-        [`${currentSet.id}-${currentItem.id}`]: true,
+        [itemKey]: true,
       };
       setCompletedItems(newCompleted);
 
@@ -474,13 +521,23 @@ export default function SyllableGame({ orientation, onBackToMenu, onOpenSettings
       // Wrong!
       setFeedbackStatus('wrong');
       playWhooshSound();
+
+      setSavedAnswers((prev) => ({
+        ...prev,
+        [itemKey]: {
+          placed: placedArray,
+          available: currentPool,
+          feedbackStatus: 'wrong',
+        },
+      }));
     }
   };
 
   // Reset current question slots
   const handleResetCurrentWord = () => {
     playPopSound();
-    setPlacedSyllables(new Array(currentItem.syllables.length).fill(null));
+    const emptySlots = new Array(currentItem.syllables.length).fill(null);
+    setPlacedSyllables(emptySlots);
     const pool = currentItem.shuffled.map((syl, idx) => ({
       id: `${itemIndex}-${idx}-${syl}`,
       text: syl,
@@ -488,6 +545,27 @@ export default function SyllableGame({ orientation, onBackToMenu, onOpenSettings
     }));
     setAvailableSyllables(pool);
     setFeedbackStatus('idle');
+
+    const itemKey = `${currentSet.id}-${currentItem.id}`;
+    setSavedAnswers((prev) => {
+      const next = { ...prev };
+      delete next[itemKey];
+      return next;
+    });
+    setCompletedItems((prev) => {
+      const next = { ...prev };
+      delete next[itemKey];
+      return next;
+    });
+  };
+
+  // Reset entire set from start
+  const handleResetFullSet = () => {
+    playPopSound();
+    setSavedAnswers({});
+    setCompletedItems({});
+    setItemIndex(0);
+    setShowCelebration(false);
   };
 
   // Navigate to previous word
@@ -854,11 +932,7 @@ export default function SyllableGame({ orientation, onBackToMenu, onOpenSettings
               ) : null}
 
               <button
-                onClick={() => {
-                  setShowCelebration(false);
-                  setItemIndex(0);
-                  handleResetCurrentWord();
-                }}
+                onClick={handleResetFullSet}
                 className="w-full py-2.5 px-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black rounded-xl text-sm shadow-md transition-all active:scale-95 font-['Fredoka'] cursor-pointer"
               >
                 Main Semula Set Ini
