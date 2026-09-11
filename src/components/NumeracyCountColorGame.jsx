@@ -107,7 +107,7 @@ function ShapeGraphic({ type, isColored, color = '#38BDF8', className = "w-6 h-6
   switch (type) {
     case 'triangle':
       return (
-        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform hover:scale-115`} fill="none">
+        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform `} fill="none">
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
@@ -132,7 +132,7 @@ function ShapeGraphic({ type, isColored, color = '#38BDF8', className = "w-6 h-6
 
     case 'pentagon':
       return (
-        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform hover:scale-115`} fill="none">
+        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform `} fill="none">
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
@@ -155,7 +155,7 @@ function ShapeGraphic({ type, isColored, color = '#38BDF8', className = "w-6 h-6
 
     case 'hexagon':
       return (
-        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform hover:scale-115`} fill="none">
+        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform `} fill="none">
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
@@ -178,7 +178,7 @@ function ShapeGraphic({ type, isColored, color = '#38BDF8', className = "w-6 h-6
 
     case 'octagon':
       return (
-        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform hover:scale-115`} fill="none">
+        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform `} fill="none">
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
@@ -201,7 +201,7 @@ function ShapeGraphic({ type, isColored, color = '#38BDF8', className = "w-6 h-6
 
     case 'square':
       return (
-        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform hover:scale-115`} fill="none">
+        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform `} fill="none">
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
@@ -227,7 +227,7 @@ function ShapeGraphic({ type, isColored, color = '#38BDF8', className = "w-6 h-6
 
     case 'decagon':
       return (
-        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform hover:scale-115`} fill="none">
+        <svg viewBox="0 0 40 40" className={`${className} filter drop-shadow-xs transition-transform `} fill="none">
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
@@ -591,10 +591,10 @@ export default function NumeracyCountColorGame({
             </div>
           </div>
 
-          {/* Interactive Shapes Grid (2 Rows of 10 Shapes with Extra Large Sizing) */}
-          <div className="w-full bg-slate-50/90 rounded-2xl p-3 sm:p-5 border-2 border-slate-200 flex flex-col gap-3 sm:gap-4 justify-center items-center shadow-inner">
+          {/* Interactive Shapes Grid (2 Rows of 10 Shapes - No Overlapping) */}
+          <div className="w-full bg-slate-50/90 rounded-3xl p-3 sm:p-5 border-2 border-slate-200 flex flex-col gap-3 sm:gap-5 justify-center items-center shadow-inner">
             {/* Row 1 (Shapes 0 to 9) */}
-            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 sm:gap-3 justify-items-center w-full max-w-xl">
+            <div className="grid grid-cols-10 gap-1 xs:gap-1.5 sm:gap-2.5 justify-items-center w-full max-w-xl">
               {Array.from({ length: 10 }).map((_, colIdx) => {
                 const shapeIdx = colIdx;
                 const isShapeColored = currentColoredSet.has(shapeIdx);
@@ -604,20 +604,14 @@ export default function NumeracyCountColorGame({
                     key={shapeIdx}
                     type="button"
                     onClick={() => handleToggleShape(shapeIdx)}
-                    className={`
-                      p-1 sm:p-2 rounded-xl transition-all duration-150 active:scale-85 cursor-pointer flex items-center justify-center bg-white border-2 shadow-xs
-                      ${
-                        isShapeColored
-                          ? 'border-slate-800 scale-105 shadow-sm'
-                          : 'border-slate-200 hover:border-sky-400 hover:scale-110 opacity-80 hover:opacity-100'
-                      }
-                    `}
+                    className="relative p-0.5 sm:p-1 rounded-xl transition-transform duration-150 active:scale-80 hover:scale-105 cursor-pointer flex items-center justify-center"
+                    title={`Bentuk ${shapeIdx + 1}`}
                   >
                     <ShapeGraphic
                       type={q.shapeType}
                       isColored={isShapeColored}
                       color={selectedBrushColor || q.themeColor}
-                      className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
+                      className="w-6 h-6 xs:w-7 xs:h-7 sm:w-9 sm:h-9 md:w-10 md:h-10"
                     />
                   </button>
                 );
@@ -625,7 +619,7 @@ export default function NumeracyCountColorGame({
             </div>
 
             {/* Row 2 (Shapes 10 to 19) */}
-            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 sm:gap-3 justify-items-center w-full max-w-xl">
+            <div className="grid grid-cols-10 gap-1 xs:gap-1.5 sm:gap-2.5 justify-items-center w-full max-w-xl">
               {Array.from({ length: 10 }).map((_, colIdx) => {
                 const shapeIdx = colIdx + 10;
                 const isShapeColored = currentColoredSet.has(shapeIdx);
@@ -635,20 +629,14 @@ export default function NumeracyCountColorGame({
                     key={shapeIdx}
                     type="button"
                     onClick={() => handleToggleShape(shapeIdx)}
-                    className={`
-                      p-1 sm:p-2 rounded-xl transition-all duration-150 active:scale-85 cursor-pointer flex items-center justify-center bg-white border-2 shadow-xs
-                      ${
-                        isShapeColored
-                          ? 'border-slate-800 scale-105 shadow-sm'
-                          : 'border-slate-200 hover:border-sky-400 hover:scale-110 opacity-80 hover:opacity-100'
-                      }
-                    `}
+                    className="relative p-0.5 sm:p-1 rounded-xl transition-transform duration-150 active:scale-80 hover:scale-105 cursor-pointer flex items-center justify-center"
+                    title={`Bentuk ${shapeIdx + 1}`}
                   >
                     <ShapeGraphic
                       type={q.shapeType}
                       isColored={isShapeColored}
                       color={selectedBrushColor || q.themeColor}
-                      className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
+                      className="w-6 h-6 xs:w-7 xs:h-7 sm:w-9 sm:h-9 md:w-10 md:h-10"
                     />
                   </button>
                 );
