@@ -33,7 +33,8 @@ import {
 const ALL_LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 export default function App() {
-  const [activeGame, setActiveGame] = useState('menu'); // 'menu', 'trail', 'drawing', 'memory'
+  const [activeGame, setActiveGame] = useState('menu');
+  const [currentSubject, setCurrentSubject] = useState('literasi'); // 'literasi' or 'numerasi' // 'menu', 'trail', 'drawing', 'memory'
   const [gameMode, setGameMode] = useState('puzzle');
   const [orientationMode, setOrientationMode] = useState('auto'); // 'auto', 'portrait', 'landscape'
   const [deviceOrientation, setDeviceOrientation] = useState(
@@ -179,6 +180,11 @@ export default function App() {
 
   const handleChangeGame = (gameId) => {
     playPopSound();
+    if (typeof gameId === 'string' && gameId.startsWith('num_')) {
+      setCurrentSubject('numerasi');
+    } else if (typeof gameId === 'string' && gameId !== 'menu') {
+      setCurrentSubject('literasi');
+    }
     setActiveGame(gameId);
   };
 
@@ -215,6 +221,8 @@ export default function App() {
               onSelectGame={handleChangeGame}
               onOpenSettings={() => setShowSettings(true)}
               orientation={effectiveOrientation}
+              currentSubject={currentSubject}
+              onSubjectChange={setCurrentSubject}
             />
           )}
 
@@ -305,7 +313,10 @@ export default function App() {
           {activeGame === 'num_compare' && (
             <NumeracyCompareGame
               orientation={effectiveOrientation}
-              onBackToMenu={() => handleChangeGame('menu')}
+              onBackToMenu={() => {
+                setCurrentSubject('numerasi');
+                handleChangeGame('menu');
+              }}
               onOpenSettings={() => setShowSettings(true)}
             />
           )}
@@ -313,7 +324,10 @@ export default function App() {
           {activeGame === 'num_count' && (
             <NumeracyCountColorGame
               orientation={effectiveOrientation}
-              onBackToMenu={() => handleChangeGame('menu')}
+              onBackToMenu={() => {
+                setCurrentSubject('numerasi');
+                handleChangeGame('menu');
+              }}
               onOpenSettings={() => setShowSettings(true)}
             />
           )}
@@ -321,7 +335,10 @@ export default function App() {
           {activeGame === 'num_order' && (
             <NumeracyOrderGame
               orientation={effectiveOrientation}
-              onBackToMenu={() => handleChangeGame('menu')}
+              onBackToMenu={() => {
+                setCurrentSubject('numerasi');
+                handleChangeGame('menu');
+              }}
               onOpenSettings={() => setShowSettings(true)}
             />
           )}
@@ -329,7 +346,10 @@ export default function App() {
           {activeGame === 'num_explore' && (
             <NumeracyExploreGame
               orientation={effectiveOrientation}
-              onBackToMenu={() => handleChangeGame('menu')}
+              onBackToMenu={() => {
+                setCurrentSubject('numerasi');
+                handleChangeGame('menu');
+              }}
               onOpenSettings={() => setShowSettings(true)}
             />
           )}

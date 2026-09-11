@@ -1,5 +1,5 @@
 import { getAssetUrl } from "../utils/assetHelper";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { playPopSound, playWhooshSound } from '../utils/soundEffects';
 import { Lock, Sparkles, ArrowRight, Settings } from 'lucide-react';
 
@@ -951,8 +951,14 @@ export default function GameSelectionMenu({
   currentSubject = 'literasi',
   onSubjectChange,
 }) {
-  const [selectedSubject, setSelectedSubject] = useState(currentSubject);
+  const [selectedSubject, setSelectedSubject] = useState(currentSubject || 'literasi');
   const [lockedToast, setLockedToast] = useState(null);
+
+  useEffect(() => {
+    if (currentSubject) {
+      setSelectedSubject(currentSubject);
+    }
+  }, [currentSubject]);
 
   const handleSubjectSwitch = (subj) => {
     if (subj === selectedSubject) return;
