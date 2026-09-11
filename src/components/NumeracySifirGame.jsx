@@ -581,7 +581,7 @@ export default function NumeracySifirGame({
           {/* 8 Draggable / Clickable Candy Tiles in 2 Rows */}
           <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 sm:gap-2.5">
             {answerBank.map((tile) => {
-              const isUsed = Object.values(placedAnswers).includes(tile.value);
+              const isUsed = placedAnswers[tile.originalItemId] === tile.value;
 
               return (
                 <button
