@@ -647,22 +647,7 @@ export default function NumeracySifirGame({
             <ChevronRight className="w-4 h-4 text-white" />
           </button>
         ) : (
-          <button
-            onClick={() => {
-              if (totalCompletedAllTables === totalQuestionsAllTables) {
-                playVictorySound();
-                confetti({ particleCount: 160, spread: 95, origin: { y: 0.6 } });
-                setShowCompletionModal(true);
-              } else {
-                playPopSound();
-                speakMalayText('Selesaikan semua soalan sifir untuk semak kejayaan!');
-              }
-            }}
-            className="flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-xl font-['Fredoka'] font-black text-xs shadow-[0_3px_0_0_#15803d] border-2 border-emerald-400 transition-all hover:scale-105 active:translate-y-0.5 active:shadow-none cursor-pointer"
-          >
-            <span>Semak Semua</span>
-            <Trophy className="w-3.5 h-3.5 text-amber-300" />
-          </button>
+          <div className="w-24 sm:w-28" />
         )}
       </div>
 
