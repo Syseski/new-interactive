@@ -58,19 +58,19 @@ export default function Navbar({
               🔢 1. Kenal & Sebut Nombor
             </span>
           )}
-          {activeGame === 'num_order' && (
-            <span className="hidden sm:inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 5. Susun Nombor
-            </span>
-          )}
           {activeGame === 'num_count' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
               🔢 3. Kira & Warna
             </span>
           )}
-          {activeGame === 'num_addition' && (
+          {activeGame === 'num_order' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-rose-500/20 text-rose-300 border border-rose-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 4. Tambah Mudah
+              🔢 4. Susun Nombor
+            </span>
+          )}
+          {activeGame === 'num_addition' && (
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 5. Tambah Mudah
             </span>
           )}
           {activeGame === 'num_sifir' && (
