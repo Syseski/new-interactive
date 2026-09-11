@@ -1232,7 +1232,7 @@ const AdditionMathIcon = () => (
       number: '7',
       title: 'Wang Saku',
       subtitle: 'Duit Syiling & RM',
-      active: false,
+      active: true,
       gameId: 'num_money',
       numColor: 'from-teal-400 to-emerald-500 border-teal-300 text-white',
       titleColor: 'text-teal-600',
