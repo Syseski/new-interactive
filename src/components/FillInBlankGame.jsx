@@ -264,6 +264,7 @@ export default function FillInBlankGame({ orientation, onBackToMenu, onOpenSetti
   const [imgFailed, setImgFailed] = useState(false);
   // Show celebration modal when all sentences in current set are correct
   const [showCelebration, setShowCelebration] = useState(false);
+  const [hasCelebrated, setHasCelebrated] = useState(false);
   // Track completed set IDs
   const [completedSets, setCompletedSets] = useState({});
 
@@ -274,6 +275,7 @@ export default function FillInBlankGame({ orientation, onBackToMenu, onOpenSetti
     setFilledAnswers({});
     setSelectedWord(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setImgFailed(false);
     setShuffledWords(shuffleArray(currentSet.wordOptions));
   }, [currentSetIndex]);
@@ -289,7 +291,8 @@ export default function FillInBlankGame({ orientation, onBackToMenu, onOpenSetti
       }
     });
 
-    if (totalSentences > 0 && correctCount === totalSentences && !showCelebration) {
+    if (totalSentences > 0 && correctCount === totalSentences && !hasCelebrated) {
+      setHasCelebrated(true);
       setShowCelebration(true);
       setCompletedSets((prev) => ({ ...prev, [currentSet.id]: true }));
       playVictorySound();
@@ -299,7 +302,7 @@ export default function FillInBlankGame({ orientation, onBackToMenu, onOpenSetti
         origin: { y: 0.6 },
       });
     }
-  }, [filledAnswers, showCelebration, currentSet]);
+  }, [filledAnswers, hasCelebrated, currentSet]);
 
   // Handle placing a word into a sentence blank
   const handlePlaceWord = (sentenceId, word) => {
@@ -386,6 +389,7 @@ export default function FillInBlankGame({ orientation, onBackToMenu, onOpenSetti
     setFilledAnswers({});
     setSelectedWord(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setShuffledWords(shuffleArray(currentSet.wordOptions));
   };
 

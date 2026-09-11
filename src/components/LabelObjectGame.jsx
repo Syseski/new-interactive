@@ -273,6 +273,7 @@ export default function LabelObjectGame({ orientation, onBackToMenu, onOpenSetti
   const [imgFailed, setImgFailed] = useState(false);
   // Celebration state
   const [showCelebration, setShowCelebration] = useState(false);
+  const [hasCelebrated, setHasCelebrated] = useState(false);
   // Completed sets tracker
   const [completedSets, setCompletedSets] = useState({});
 
@@ -283,6 +284,7 @@ export default function LabelObjectGame({ orientation, onBackToMenu, onOpenSetti
     setFilledAnswers({});
     setSelectedWord(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setImgFailed(false);
     setShuffledWords(shuffleArray(currentSet.wordOptions));
   }, [currentSetIndex]);
@@ -298,7 +300,8 @@ export default function LabelObjectGame({ orientation, onBackToMenu, onOpenSetti
       }
     });
 
-    if (totalSlots > 0 && correctCount === totalSlots && !showCelebration) {
+    if (totalSlots > 0 && correctCount === totalSlots && !hasCelebrated) {
+      setHasCelebrated(true);
       setShowCelebration(true);
       setCompletedSets((prev) => ({ ...prev, [currentSet.id]: true }));
       playVictorySound();
@@ -308,7 +311,7 @@ export default function LabelObjectGame({ orientation, onBackToMenu, onOpenSetti
         origin: { y: 0.6 },
       });
     }
-  }, [filledAnswers, showCelebration, currentSet]);
+  }, [filledAnswers, hasCelebrated, currentSet]);
 
   // Place word into a slot
   const handlePlaceWord = (slotId, word) => {
@@ -393,6 +396,7 @@ export default function LabelObjectGame({ orientation, onBackToMenu, onOpenSetti
     setFilledAnswers({});
     setSelectedWord(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setShuffledWords(shuffleArray(currentSet.wordOptions));
   };
 

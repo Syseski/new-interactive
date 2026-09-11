@@ -243,12 +243,14 @@ export default function DragMatchGame({ orientation, onBackToMenu, onOpenSetting
   const [dragOverBox, setDragOverBox] = useState(null);
   // Show celebration modal when all 5 are matched
   const [showCelebration, setShowCelebration] = useState(false);
+  const [hasCelebrated, setHasCelebrated] = useState(false);
 
   // Initialize single set
   useEffect(() => {
     setMatchedSlots({});
     setSelectedWord(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setDragOverBox(null);
     // Shuffle the word cards for challenge
     const words = MATCH_ITEMS.map((item) => item.word);
@@ -260,7 +262,8 @@ export default function DragMatchGame({ orientation, onBackToMenu, onOpenSetting
     const totalItems = MATCH_ITEMS.length;
     const correctCount = Object.keys(matchedSlots).length;
 
-    if (totalItems > 0 && correctCount === totalItems && !showCelebration) {
+    if (totalItems > 0 && correctCount === totalItems && !hasCelebrated) {
+      setHasCelebrated(true);
       setShowCelebration(true);
       playVictorySound();
       confetti({
@@ -269,7 +272,7 @@ export default function DragMatchGame({ orientation, onBackToMenu, onOpenSetting
         origin: { y: 0.6 },
       });
     }
-  }, [matchedSlots]);
+  }, [matchedSlots, hasCelebrated]);
 
   // Handle word placement into a numbered picture box
   const handlePlaceWord = (targetNumber, word) => {
@@ -352,6 +355,7 @@ export default function DragMatchGame({ orientation, onBackToMenu, onOpenSetting
     setMatchedSlots({});
     setSelectedWord(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setWordOptions(shuffleArray(MATCH_ITEMS.map((i) => i.word)));
   };
 

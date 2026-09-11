@@ -390,12 +390,15 @@ export default function ChooseCorrectGame({ orientation, onBackToMenu, onOpenSet
   const [wrongSelection, setWrongSelection] = useState(null);
   // Show celebration modal
   const [showCelebration, setShowCelebration] = useState(false);
+  // Track if celebration has already triggered for this run
+  const [hasCelebrated, setHasCelebrated] = useState(false);
 
   // Initialize and randomize options
   useEffect(() => {
     setSelectedAnswers({});
     setWrongSelection(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setQuizQuestions(
       QUIZ_DATA.map((q) => ({
         ...q,
@@ -415,7 +418,8 @@ export default function ChooseCorrectGame({ orientation, onBackToMenu, onOpenSet
       }
     });
 
-    if (totalQuestions > 0 && correctCount === totalQuestions && !showCelebration) {
+    if (totalQuestions > 0 && correctCount === totalQuestions && !hasCelebrated) {
+      setHasCelebrated(true);
       setShowCelebration(true);
       playVictorySound();
       confetti({
@@ -424,7 +428,7 @@ export default function ChooseCorrectGame({ orientation, onBackToMenu, onOpenSet
         origin: { y: 0.6 },
       });
     }
-  }, [selectedAnswers, showCelebration]);
+  }, [selectedAnswers, hasCelebrated]);
 
   // Handle user selecting an option
   const handleSelectAnswer = (questionId, option) => {
@@ -464,6 +468,7 @@ export default function ChooseCorrectGame({ orientation, onBackToMenu, onOpenSet
     setSelectedAnswers({});
     setWrongSelection(null);
     setShowCelebration(false);
+    setHasCelebrated(false);
     setQuizQuestions(
       QUIZ_DATA.map((q) => ({
         ...q,

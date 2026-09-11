@@ -300,6 +300,7 @@ export default function CrosswordGame({ orientation, onBackToMenu, onOpenSetting
   const [completedSets, setCompletedSets] = useState({});
   // Celebration state
   const [showCelebration, setShowCelebration] = useState(false);
+  const [hasCelebrated, setHasCelebrated] = useState(false);
 
   // Hidden native input ref for triggering mobile on-screen keyboard
   const nativeInputRef = useRef(null);
@@ -310,6 +311,7 @@ export default function CrosswordGame({ orientation, onBackToMenu, onOpenSetting
     setCellMap(model);
     setUserLetters({});
     setShowCelebration(false);
+    setHasCelebrated(false);
     const firstClue = currentSet.clues[0];
     if (firstClue) {
       setSelectedClueId(firstClue.id);
@@ -332,7 +334,8 @@ export default function CrosswordGame({ orientation, onBackToMenu, onOpenSetting
       }
     }
 
-    if (isAllCorrect && !showCelebration) {
+    if (isAllCorrect && !hasCelebrated) {
+      setHasCelebrated(true);
       setShowCelebration(true);
       setCompletedSets((prev) => ({ ...prev, [currentSet.id]: true }));
       playVictorySound();
@@ -342,7 +345,7 @@ export default function CrosswordGame({ orientation, onBackToMenu, onOpenSetting
         origin: { y: 0.6 },
       });
     }
-  }, [userLetters, cellMap, showCelebration, currentSet]);
+  }, [userLetters, cellMap, hasCelebrated, currentSet]);
 
   // Helper to advance cursor to next cell in the active clue
   const advanceToNextCell = useCallback(
@@ -496,6 +499,7 @@ export default function CrosswordGame({ orientation, onBackToMenu, onOpenSetting
     playPopSound();
     setUserLetters({});
     setShowCelebration(false);
+    setHasCelebrated(false);
     const firstClue = currentSet.clues[0];
     if (firstClue) {
       setSelectedClueId(firstClue.id);
