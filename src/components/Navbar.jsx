@@ -73,9 +73,9 @@ export default function Navbar({
               🔢 3. Kenal & Sebut Nombor
             </span>
           )}
-          {activeGame === 'num_drawing' && (
+          {activeGame === 'num_addition' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-rose-500/20 text-rose-300 border border-rose-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 4. Tulis & Lukis Nombor
+              🔢 4. Tambah Mudah
             </span>
           )}
         </div>

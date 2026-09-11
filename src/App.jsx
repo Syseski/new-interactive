@@ -16,7 +16,7 @@ import NumeracyCountColorGame from './components/NumeracyCountColorGame';
 import NumeracyOrderGame from './components/NumeracyOrderGame';
 import NumeracyExploreGame from './components/NumeracyExploreGame';
 import NumeracySifirGame from './components/NumeracySifirGame';
-import NumeracyDrawingGame from './components/NumeracyDrawingGame';
+import NumeracyAdditionGame from './components/NumeracyAdditionGame';
 import VictoryModal from './components/VictoryModal';
 import GameSelectionMenu from './components/GameSelectionMenu';
 import SettingsModal from './components/SettingsModal';
@@ -367,8 +367,8 @@ export default function App() {
             />
           )}
 
-          {activeGame === 'num_drawing' && (
-            <NumeracyDrawingGame
+          {activeGame === 'num_addition' && (
+            <NumeracyAdditionGame
               orientation={effectiveOrientation}
               onBackToMenu={() => {
                 setCurrentSubject('numerasi');
