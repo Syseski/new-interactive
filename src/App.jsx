@@ -16,6 +16,7 @@ import NumeracyCountColorGame from './components/NumeracyCountColorGame';
 import NumeracyOrderGame from './components/NumeracyOrderGame';
 import NumeracyExploreGame from './components/NumeracyExploreGame';
 import NumeracySifirGame from './components/NumeracySifirGame';
+import NumeracyDrawingGame from './components/NumeracyDrawingGame';
 import VictoryModal from './components/VictoryModal';
 import GameSelectionMenu from './components/GameSelectionMenu';
 import SettingsModal from './components/SettingsModal';
@@ -357,6 +358,17 @@ export default function App() {
 
           {activeGame === 'num_explore' && (
             <NumeracyExploreGame
+              orientation={effectiveOrientation}
+              onBackToMenu={() => {
+                setCurrentSubject('numerasi');
+                handleChangeGame('menu');
+              }}
+              onOpenSettings={() => setShowSettings(true)}
+            />
+          )}
+
+          {activeGame === 'num_drawing' && (
+            <NumeracyDrawingGame
               orientation={effectiveOrientation}
               onBackToMenu={() => {
                 setCurrentSubject('numerasi');

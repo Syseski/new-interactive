@@ -1131,6 +1131,21 @@ export default function GameSelectionMenu({
   </svg>
 );
 
+const NumberDrawingCrayonIcon = () => (
+  <svg className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none">
+    <rect x="10" y="10" width="80" height="80" rx="16" fill="#FFE4E6" stroke="#F43F5E" strokeWidth="2.5" />
+    <circle cx="50" cy="50" r="28" fill="#FB7185" />
+    <text x="32" y="62" fill="#FFFFFF" fontSize="32" fontWeight="bold" fontFamily="Fredoka">1</text>
+    {/* Cute Crayon Icon */}
+    <g transform="translate(48, 22) rotate(25)">
+      <rect x="0" y="8" width="14" height="34" rx="3" fill="#FDE047" stroke="#EAB308" strokeWidth="2" />
+      <path d="M0 8 L7 -4 L14 8 Z" fill="#F43F5E" stroke="#E11D48" strokeWidth="1.5" />
+      <circle cx="7" cy="0" r="2" fill="#1E293B" />
+      <line x1="2" y1="18" x2="12" y2="18" stroke="#EAB308" strokeWidth="1.5" />
+    </g>
+  </svg>
+);
+
   const NUMERACY_GAMES_LIST = [
     {
       id: 1,
@@ -1177,16 +1192,16 @@ export default function GameSelectionMenu({
     {
       id: 4,
       number: '4',
-      title: 'Tolak Mudah',
-      subtitle: 'Operasi Tolak',
-      active: false,
-      gameId: 'num_subtract',
+      title: 'Tulis & Lukis',
+      subtitle: 'Nombor 0 - 10',
+      active: true,
+      gameId: 'num_drawing',
       numColor: 'from-rose-400 to-red-500 border-rose-300 text-white',
       titleColor: 'text-rose-600',
       bgHover: 'hover:bg-rose-50/90 hover:border-rose-400 hover:shadow-md',
       cardBorder: 'border-rose-300/80',
       cardBg: 'bg-rose-50/60',
-      icon: <SubtractMathIcon />,
+      icon: <NumberDrawingCrayonIcon />,
     },
     {
       id: 5,
