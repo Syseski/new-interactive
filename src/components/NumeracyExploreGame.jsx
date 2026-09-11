@@ -665,18 +665,31 @@ export default function NumeracyExploreGame({
               Anda telah berjaya menjawab semua soalan kuiz nombor 1 hingga 10 dengan cemerlang!
             </p>
 
-            <button
-              onClick={() => {
-                playPopSound();
-                setScore(0);
-                setStreak(0);
-                setShowVictoryModal(false);
-                startNewQuiz();
-              }}
-              className="w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 text-white rounded-2xl font-['Fredoka'] font-black text-sm shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            >
-              Main Kuiz Semula
-            </button>
+            <div className="flex flex-col gap-2 w-full">
+              <button
+                onClick={() => {
+                  playPopSound();
+                  setShowVictoryModal(false);
+                }}
+                className="w-full py-2.5 bg-sky-100 hover:bg-sky-200 text-sky-800 rounded-2xl font-['Fredoka'] font-black text-sm shadow-sm transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <span>👁️</span>
+                <span>Lihat Jawapan</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  playPopSound();
+                  setScore(0);
+                  setStreak(0);
+                  setShowVictoryModal(false);
+                  startNewQuiz();
+                }}
+                className="w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 text-white rounded-2xl font-['Fredoka'] font-black text-sm shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                Main Kuiz Semula
+              </button>
+            </div>
           </div>
         </div>
       )}

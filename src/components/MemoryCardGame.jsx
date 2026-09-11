@@ -458,14 +458,27 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
               <span>⭐</span>
             </div>
 
-            {/* Play Again with 6 Fresh Random Letters */}
-            <button
-              onClick={handleStartNewGame}
-              className="w-full py-3.5 px-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-black rounded-2xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg"
-            >
-              <Shuffle className="w-5 h-5" />
-              <span>Main Lagi (6 Huruf Baharu)</span>
-            </button>
+            {/* Actions */}
+            <div className="flex flex-col gap-2.5 w-full">
+              <button
+                onClick={() => {
+                  playPopSound();
+                  setShowVictory(false);
+                }}
+                className="w-full py-3 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 font-['Fredoka'] font-black rounded-2xl shadow-sm transition-all active:scale-95 flex items-center justify-center gap-1.5 text-base cursor-pointer"
+              >
+                <span>👁️</span>
+                <span>Lihat Jawapan</span>
+              </button>
+
+              <button
+                onClick={handleStartNewGame}
+                className="w-full py-3.5 px-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-black rounded-2xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg cursor-pointer"
+              >
+                <Shuffle className="w-5 h-5" />
+                <span>Main Lagi (6 Huruf Baharu)</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

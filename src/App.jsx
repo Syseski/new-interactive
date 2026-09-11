@@ -378,6 +378,10 @@ export default function App() {
       <VictoryModal
         isOpen={showVictory}
         onRestart={handleReset}
+        onClose={() => {
+          playPopSound();
+          setShowVictory(false);
+        }}
       />
     </div>
   );

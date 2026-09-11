@@ -976,6 +976,17 @@ export default function NumeracyOrderGame({
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-2 w-full">
+              <button
+                onClick={() => {
+                  playPopSound();
+                  setShowVictoryModal(false);
+                }}
+                className="w-full py-2.5 bg-sky-100 hover:bg-sky-200 text-sky-800 rounded-2xl font-['Fredoka'] font-black text-sm shadow-sm transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <span>👁️</span>
+                <span>Lihat Jawapan</span>
+              </button>
+
               {currentSetIndex < ORDER_SETS.length - 1 && (
                 <button
                   onClick={() => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Award, RotateCcw, Sparkles } from 'lucide-react';
 
-export default function VictoryModal({ isOpen, onRestart }) {
+export default function VictoryModal({ isOpen, onRestart, onClose }) {
   if (!isOpen) return null;
 
   return (
@@ -32,13 +32,22 @@ export default function VictoryModal({ isOpen, onRestart }) {
         </div>
 
         {/* Actions */}
-        <button
-          onClick={onRestart}
-          className="w-full py-3 px-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2 text-lg"
-        >
-          <RotateCcw className="w-5 h-5" />
-          Main Semula
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button
+            onClick={onClose}
+            className="flex-1 py-3 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 font-['Fredoka'] font-bold rounded-2xl shadow-sm hover:shadow transition-all active:scale-95 flex items-center justify-center gap-1.5 text-base cursor-pointer"
+          >
+            <span>👁️</span>
+            <span>Lihat Jawapan</span>
+          </button>
+          <button
+            onClick={onRestart}
+            className="flex-1 py-3 px-4 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-['Fredoka'] font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2 text-base cursor-pointer"
+          >
+            <RotateCcw className="w-5 h-5" />
+            <span>Main Semula</span>
+          </button>
+        </div>
       </div>
     </div>
   );

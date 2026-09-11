@@ -664,7 +664,18 @@ export default function NumeracySifirGame({
               Anda berjaya menyelesaikan kesemua 24 soalan darab untuk Sifir 2, Sifir 4 dan Sifir 6 dengan cemerlang!
             </p>
 
-            <div className="flex items-center justify-center gap-3 mt-6 w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 mt-6 w-full">
+              <button
+                onClick={() => {
+                  playPopSound();
+                  setShowCompletionModal(false);
+                }}
+                className="w-full sm:flex-1 py-3 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 rounded-2xl font-['Fredoka'] font-bold text-sm sm:text-base transition-transform active:scale-95 cursor-pointer shadow-sm flex items-center justify-center gap-1.5"
+              >
+                <span>👁️</span>
+                <span>Lihat Jawapan</span>
+              </button>
+
               <button
                 onClick={() => {
                   setPlacedAnswers({});
@@ -672,14 +683,14 @@ export default function NumeracySifirGame({
                   setShowCompletionModal(false);
                   playWhooshSound();
                 }}
-                className="flex-1 py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-2xl font-['Fredoka'] font-bold text-sm sm:text-base transition-transform active:scale-95 cursor-pointer shadow-sm"
+                className="w-full sm:flex-1 py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-2xl font-['Fredoka'] font-bold text-sm sm:text-base transition-transform active:scale-95 cursor-pointer shadow-sm"
               >
                 Mula Semula
               </button>
 
               <button
                 onClick={onBackToMenu}
-                className="flex-1 py-3 px-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-['Fredoka'] font-black text-sm sm:text-base shadow-[0_4px_0_0_#15803d] transition-transform hover:scale-105 active:translate-y-1 active:shadow-none cursor-pointer"
+                className="w-full sm:flex-1 py-3 px-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-['Fredoka'] font-black text-sm sm:text-base shadow-[0_4px_0_0_#15803d] transition-transform hover:scale-105 active:translate-y-1 active:shadow-none cursor-pointer"
               >
                 Ke Menu Utama 🏆
               </button>

@@ -519,6 +519,17 @@ export default function DragMatchGame({ orientation, onBackToMenu, onOpenSetting
 
             <div className="flex flex-col gap-2 w-full">
               <button
+                onClick={() => {
+                  playPopSound();
+                  setShowCelebration(false);
+                }}
+                className="w-full py-2.5 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 font-black rounded-xl text-sm shadow-sm transition-all active:scale-95 font-['Fredoka'] cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <span>👁️</span>
+                <span>Lihat Jawapan</span>
+              </button>
+
+              <button
                 onClick={handleResetLevel}
                 className="w-full py-2.5 px-4 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-black rounded-xl text-sm shadow-md transition-all active:scale-95 font-['Fredoka'] cursor-pointer"
               >
