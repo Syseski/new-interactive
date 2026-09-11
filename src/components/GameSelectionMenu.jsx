@@ -1162,7 +1162,7 @@ const AdditionMathIcon = () => (
       number: '2',
       title: 'Bentuk & Pola',
       subtitle: 'Geometri & Corak',
-      active: false,
+      active: true,
       gameId: 'num_shapes',
       numColor: 'from-emerald-400 to-green-500 border-emerald-300 text-white',
       titleColor: 'text-emerald-600',
@@ -1216,7 +1216,7 @@ const AdditionMathIcon = () => (
     {
       id: 6,
       number: '6',
-      title: 'Lebih Kurang',
+      title: 'Lebih & Kurang',
       subtitle: 'Banding Nilai',
       active: true,
       gameId: 'num_compare',

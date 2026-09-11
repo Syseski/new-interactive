@@ -58,6 +58,11 @@ export default function Navbar({
               🔢 1. Kenal & Sebut Nombor
             </span>
           )}
+          {activeGame === 'num_shapes' && (
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 2. Bentuk & Pola
+            </span>
+          )}
           {activeGame === 'num_count' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
               🔢 3. Kira & Warna
