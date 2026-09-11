@@ -59,8 +59,8 @@ export default function Navbar({
             </span>
           )}
           {activeGame === 'num_order' && (
-            <span className="hidden sm:inline-flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 2. Susun Nombor
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 5. Susun Nombor
             </span>
           )}
           {activeGame === 'num_count' && (
