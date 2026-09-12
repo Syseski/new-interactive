@@ -19,7 +19,6 @@ import {
   playVictorySound,
   speakLetter,
   playMemoryInstructionAudio,
-  getBestMalayVoice,
 } from '../../utils/soundEffects';
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -142,25 +141,10 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
 
   const isLandscape = orientation === 'landscape';
 
-  // Speak voice feedback
-  const speakFeedback = (text) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const ut = new SpeechSynthesisUtterance(text);
-      ut.lang = 'ms-MY';
-      ut.rate = 0.9;
-      const voice = getBestMalayVoice();
-      if (voice) ut.voice = voice;
-      window.speechSynthesis.speak(ut);
-    }
-  };
-
-  // Play custom voice audio for Literacy 3 instruction
+  // Play custom voice audio for Literacy 3 instruction (No AI TTS)
   const handlePlayInstruction = () => {
     playPopSound();
-    playMemoryInstructionAudio(() => {
-      speakFeedback(mascotTip || DEFAULT_INSTRUCTION);
-    });
+    playMemoryInstructionAudio();
   };
 
   // Start fresh game with 6 brand new random letters
