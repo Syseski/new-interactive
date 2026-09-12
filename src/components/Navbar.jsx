@@ -105,33 +105,9 @@ export default function Navbar({
           )}
         </div>
 
-        {/* Center: Contextual Mode & Progress (Only for Game 1) */}
+        {/* Center: Progress (Only for Game 1) */}
         {activeGame === 'trail' && (
-          <div className="flex items-center gap-2 sm:gap-4 order-3 sm:order-2 w-full sm:w-auto justify-between sm:justify-center border-t border-slate-700 sm:border-t-0 pt-1 sm:pt-0">
-            {/* Mode Switcher */}
-            <div className="flex bg-slate-900/80 p-1 rounded-xl border border-slate-700 text-xs">
-              <button
-                onClick={() => onChangeGameMode('puzzle')}
-                className={`px-2.5 py-1 rounded-lg font-semibold transition-colors ${
-                  gameMode === 'puzzle'
-                    ? 'bg-amber-500 text-slate-950 shadow-sm'
-                    : 'text-slate-300 hover:text-white'
-                }`}
-              >
-                Cari & Paparkan
-              </button>
-              <button
-                onClick={() => onChangeGameMode('explore')}
-                className={`px-2.5 py-1 rounded-lg font-semibold transition-colors ${
-                  gameMode === 'explore'
-                    ? 'bg-amber-500 text-slate-950 shadow-sm'
-                    : 'text-slate-300 hover:text-white'
-                }`}
-              >
-                Mod Teroka
-              </button>
-            </div>
-
+          <div className="flex items-center gap-2 sm:gap-4 order-3 sm:order-2 w-full sm:w-auto justify-center border-t border-slate-700 sm:border-t-0 pt-1 sm:pt-0">
             {/* Progress Pill */}
             <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1 rounded-xl border border-slate-700">
               <span className="text-xs text-slate-300">Kemajuan:</span>
