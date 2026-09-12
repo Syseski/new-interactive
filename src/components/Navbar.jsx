@@ -83,6 +83,11 @@ export default function Navbar({
               🔢 7. Wang Saku
             </span>
           )}
+          {activeGame === 'num_time' && (
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-orange-500/20 text-orange-300 border border-orange-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 8. Masa & Waktu
+            </span>
+          )}
           {activeGame === 'num_sifir' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
               🔢 9. Cabaran Sifir

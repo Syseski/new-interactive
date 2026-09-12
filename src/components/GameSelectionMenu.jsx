@@ -1244,9 +1244,9 @@ const AdditionMathIcon = () => (
     {
       id: 8,
       number: '8',
-      title: 'Waktu & Masa',
+      title: 'Masa & Waktu',
       subtitle: 'Kenal Jam & Waktu',
-      active: false,
+      active: true,
       gameId: 'num_time',
       numColor: 'from-amber-400 to-orange-500 border-amber-300 text-white',
       titleColor: 'text-amber-600',

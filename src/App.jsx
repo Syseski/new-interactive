@@ -19,6 +19,7 @@ import NumeracySifirGame from './components/NumeracySifirGame';
 import NumeracyAdditionGame from './components/NumeracyAdditionGame';
 import NumeracyShapesGame from './components/NumeracyShapesGame';
 import NumeracyMoneyGame from './components/NumeracyMoneyGame';
+import NumeracyTimeGame from './components/NumeracyTimeGame';
 import VictoryModal from './components/VictoryModal';
 import GameSelectionMenu from './components/GameSelectionMenu';
 import SettingsModal from './components/SettingsModal';
@@ -393,6 +394,17 @@ export default function App() {
 
           {activeGame === 'num_money' && (
             <NumeracyMoneyGame
+              orientation={effectiveOrientation}
+              onBackToMenu={() => {
+                setCurrentSubject('numerasi');
+                handleChangeGame('menu');
+              }}
+              onOpenSettings={() => setShowSettings(true)}
+            />
+          )}
+
+          {activeGame === 'num_time' && (
+            <NumeracyTimeGame
               orientation={effectiveOrientation}
               onBackToMenu={() => {
                 setCurrentSubject('numerasi');
