@@ -24,8 +24,8 @@ import {
   playWhooshSound,
   playMatchSuccessSound,
   speakMalayText,
-} from '../utils/soundEffects';
-import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
+} from '../../utils/soundEffects';
+import { GoldenStarIllustration, ThreeGoldenStarsCluster } from '../literasi/PhonicsIllustration';
 
 // --- VECTOR ANALOG CLOCK RENDERER ---
 export function ClockRenderer({ hour, minute = 0, size = 'md', className = '' }) {

@@ -22,8 +22,8 @@ import {
   playWhooshSound,
   playMatchSuccessSound,
   speakMalayText,
-} from '../utils/soundEffects';
-import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
+} from '../../utils/soundEffects';
+import { GoldenStarIllustration, ThreeGoldenStarsCluster } from '../literasi/PhonicsIllustration';
 
 // --- AUTHENTIC MALAYSIAN MONEY SVG RENDERER ---
 export function MoneyRenderer({ item, size = 'md', className = '' }) {

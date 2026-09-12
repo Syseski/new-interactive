@@ -19,7 +19,7 @@ import {
   playVictorySound,
   speakLetter,
   getBestMalayVoice,
-} from '../utils/soundEffects';
+} from '../../utils/soundEffects';
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 

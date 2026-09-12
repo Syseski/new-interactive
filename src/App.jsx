@@ -1,29 +1,33 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import Navbar from './components/Navbar';
-import GameBoard from './components/GameBoard';
-import LetterDrawingGame from './components/LetterDrawingGame';
-import MemoryCardGame from './components/MemoryCardGame';
-import DragMatchGame from './components/DragMatchGame';
-import FillInBlankGame from './components/FillInBlankGame';
-import ChooseCorrectGame from './components/ChooseCorrectGame';
-import LabelObjectGame from './components/LabelObjectGame';
-import CrosswordGame from './components/CrosswordGame';
-import SyllableGame from './components/SyllableGame';
-import SentenceGame from './components/SentenceGame';
-import NumeracyCompareGame from './components/NumeracyCompareGame';
-import NumeracyCountColorGame from './components/NumeracyCountColorGame';
-import NumeracyOrderGame from './components/NumeracyOrderGame';
-import NumeracyExploreGame from './components/NumeracyExploreGame';
-import NumeracySifirGame from './components/NumeracySifirGame';
-import NumeracyAdditionGame from './components/NumeracyAdditionGame';
-import NumeracyShapesGame from './components/NumeracyShapesGame';
-import NumeracyMoneyGame from './components/NumeracyMoneyGame';
-import NumeracyTimeGame from './components/NumeracyTimeGame';
-import NumeracySubtractionGame from './components/NumeracySubtractionGame';
-import VictoryModal from './components/VictoryModal';
 import GameSelectionMenu from './components/GameSelectionMenu';
 import SettingsModal from './components/SettingsModal';
+import VictoryModal from './components/VictoryModal';
+
+// Literasi Games (1 - 10)
+import GameBoard from './components/literasi/GameBoard';
+import LetterDrawingGame from './components/literasi/LetterDrawingGame';
+import MemoryCardGame from './components/literasi/MemoryCardGame';
+import DragMatchGame from './components/literasi/DragMatchGame';
+import FillInBlankGame from './components/literasi/FillInBlankGame';
+import ChooseCorrectGame from './components/literasi/ChooseCorrectGame';
+import LabelObjectGame from './components/literasi/LabelObjectGame';
+import CrosswordGame from './components/literasi/CrosswordGame';
+import SyllableGame from './components/literasi/SyllableGame';
+import SentenceGame from './components/literasi/SentenceGame';
+
+// Numerasi Games (1 - 10)
+import NumeracyExploreGame from './components/numerasi/NumeracyExploreGame';
+import NumeracyShapesGame from './components/numerasi/NumeracyShapesGame';
+import NumeracyCountColorGame from './components/numerasi/NumeracyCountColorGame';
+import NumeracyOrderGame from './components/numerasi/NumeracyOrderGame';
+import NumeracyAdditionGame from './components/numerasi/NumeracyAdditionGame';
+import NumeracySubtractionGame from './components/numerasi/NumeracySubtractionGame';
+import NumeracyCompareGame from './components/numerasi/NumeracyCompareGame';
+import NumeracyMoneyGame from './components/numerasi/NumeracyMoneyGame';
+import NumeracyTimeGame from './components/numerasi/NumeracyTimeGame';
+import NumeracySifirGame from './components/numerasi/NumeracySifirGame';
 import {
   playPopSound,
   playRevealSound,

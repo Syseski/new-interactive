@@ -20,8 +20,8 @@ import {
   playWhooshSound,
   playMatchSuccessSound,
   speakMalayText,
-} from '../utils/soundEffects';
-import { ThreeGoldenStarsCluster } from './PhonicsIllustration';
+} from '../../utils/soundEffects';
+import { ThreeGoldenStarsCluster } from '../literasi/PhonicsIllustration';
 
 // Data Sifir 2, Sifir 4 & Sifir 6 Sahaja (Mengikut Lembaran Kerja)
 const SIFIR_DATA = [

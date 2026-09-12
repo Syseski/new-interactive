@@ -15,7 +15,7 @@ import {
   playVictorySound,
   playWhooshSound,
   playMatchSuccessSound,
-} from '../utils/soundEffects';
+} from '../../utils/soundEffects';
 import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
 
 // Data Soalan Susun Ayat (100% Bahasa Melayu)

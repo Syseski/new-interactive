@@ -21,8 +21,8 @@ import {
   playWhooshSound,
   playMatchSuccessSound,
   speakMalayText,
-} from '../utils/soundEffects';
-import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
+} from '../../utils/soundEffects';
+import { GoldenStarIllustration, ThreeGoldenStarsCluster } from '../literasi/PhonicsIllustration';
 
 // --- RICH SHAPE SVG COMPONENT WITH GLOSS & KAWAII FACES ---
 export function ShapeRenderer({ type, color, size = 'md', hasFace = true, className = '' }) {

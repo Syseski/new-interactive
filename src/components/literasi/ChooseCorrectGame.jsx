@@ -1,4 +1,4 @@
-import { getAssetUrl } from "../utils/assetHelper";
+import { getAssetUrl } from "../../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -12,7 +12,7 @@ import {
   playOopsSound,
   playVictorySound,
   playMatchSuccessSound,
-} from '../utils/soundEffects';
+} from '../../utils/soundEffects';
 import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
 
 // Vector Illustrations for the 4 Question Images (Gitar, Tuala, Rusa, Daun)

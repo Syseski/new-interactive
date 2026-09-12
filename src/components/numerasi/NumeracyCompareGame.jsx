@@ -1,4 +1,4 @@
-import { getAssetUrl } from "../utils/assetHelper";
+import { getAssetUrl } from "../../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -21,8 +21,8 @@ import {
   playWhooshSound,
   playMatchSuccessSound,
   playOopsSound,
-} from '../utils/soundEffects';
-import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
+} from '../../utils/soundEffects';
+import { GoldenStarIllustration, ThreeGoldenStarsCluster } from '../literasi/PhonicsIllustration';
 
 // Cute Vector or Custom Image Object Item for Sets
 function ObjectItem({ type, size = 'normal' }) {

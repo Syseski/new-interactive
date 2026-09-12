@@ -18,7 +18,7 @@ import {
   playMatchSuccessSound,
   playOopsSound,
   speakMalayText,
-} from '../utils/soundEffects';
+} from '../../utils/soundEffects';
 
 /* =========================================================================
    1. QUESTION DATA (5 SETS: MENAIK, MENURUN, POLA & NOMBOR BESAR)

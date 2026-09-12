@@ -1,4 +1,4 @@
-import { getAssetUrl } from "../utils/assetHelper";
+import { getAssetUrl } from "../../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -20,8 +20,8 @@ import {
   playVictorySound,
   playWhooshSound,
   playMatchSuccessSound,
-} from '../utils/soundEffects';
-import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
+} from '../../utils/soundEffects';
+import { GoldenStarIllustration, ThreeGoldenStarsCluster } from '../literasi/PhonicsIllustration';
 
 // Custom Brush Image component supporting user's custom image (public/images/brush.png or uploaded image)
 function CustomBrushIcon({ activeColor = '#38BDF8', className = "w-7 h-7 sm:w-8 sm:h-8", allowUpload = false }) {

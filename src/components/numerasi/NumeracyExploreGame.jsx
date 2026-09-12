@@ -27,7 +27,7 @@ import {
   numberToMalayWord,
   setRecordedNumberAudio,
   getRecordedNumberAudio,
-} from '../utils/soundEffects';
+} from '../../utils/soundEffects';
 
 /* =========================================================================
    1. COUNT OBJECTS & COLORS FOR NUMBERS 1 TO 10

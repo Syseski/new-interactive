@@ -1,4 +1,4 @@
-import { getAssetUrl } from "../utils/assetHelper";
+import { getAssetUrl } from "../../utils/assetHelper";
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
@@ -16,7 +16,7 @@ import {
   playVictorySound,
   playWhooshSound,
   playMatchSuccessSound,
-} from '../utils/soundEffects';
+} from '../../utils/soundEffects';
 import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
 
 // Multi-Set Data for Activity 7: Label Objek

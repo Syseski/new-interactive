@@ -23,7 +23,7 @@ import {
   playWhooshSound,
   speakLetterAndWord,
   speakOops,
-} from '../utils/soundEffects';
+} from '../../utils/soundEffects';
 import { PhonicsIllustration, GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
