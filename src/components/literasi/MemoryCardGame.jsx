@@ -296,15 +296,6 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
               );
             })}
           </div>
-
-          {/* Audio read tip */}
-          <button
-            onClick={handlePlayInstruction}
-            className="p-1.5 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full transition-all active:scale-90 shadow-xs cursor-pointer flex items-center justify-center ml-1"
-            title="Dengar Arahan"
-          >
-            <Volume2 className="w-4 h-4" />
-          </button>
         </div>
       </div>
 
