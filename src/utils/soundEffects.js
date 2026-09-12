@@ -203,25 +203,8 @@ export function getBestMalayVoice() {
   return null;
 }
 
-// Fallback TTS in case audio file is missing or fails
-function fallbackTTS(letter) {
-  if (!soundEnabled || !('speechSynthesis' in window)) return;
-  const char = (letter || '').toLowerCase();
-  try {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(char);
-    utterance.pitch = selectedGender === 'male' ? 0.8 : 1.15;
-    utterance.rate = 0.88;
-    utterance.lang = 'ms-MY';
-    const voice = getBestMalayVoice();
-    if (voice) utterance.voice = voice;
-    window.speechSynthesis.speak(utterance);
-  } catch (e) {
-    console.error('TTS error:', e);
-  }
-}
 
-// Speak / Play ONLY the letter audio (prioritizing custom MP3 audio files from public/audio/letters/)
+// Speak / Play ONLY the letter audio using custom recorded MP3 files from public/audio/letters/
 export function speakLetter(letter) {
   if (!soundEnabled || !voiceEnabled) return;
 
@@ -229,7 +212,7 @@ export function speakLetter(letter) {
   const audioSrc = getAssetUrl(`/audio/letters/${upper}.mp3`);
 
   try {
-    // Stop previous audio playback & cancel any ongoing TTS
+    // Stop previous audio playback & cancel any ongoing speech
     if (currentLetterAudio) {
       currentLetterAudio.pause();
       currentLetterAudio.currentTime = 0;
@@ -245,7 +228,7 @@ export function speakLetter(letter) {
     const audio = audioCache[upper];
     audio.currentTime = 0;
     audio.volume = voiceVolume;
-    audio.playbackRate = voiceRate; // Slower, comfortable child pace
+    audio.playbackRate = 1.0; // Play natural recorded human voice at standard speed
     const playPromise = audio.play();
 
     if (playPromise !== undefined) {
@@ -254,13 +237,11 @@ export function speakLetter(letter) {
           currentLetterAudio = audio;
         })
         .catch((err) => {
-          console.warn(`Could not play custom audio file for letter ${upper}, falling back to TTS:`, err);
-          fallbackTTS(letter);
+          console.warn(`Could not play custom audio file for letter ${upper}:`, err);
         });
     }
   } catch (err) {
     console.warn(`Audio playback error for letter ${upper}:`, err);
-    fallbackTTS(letter);
   }
 }
 
