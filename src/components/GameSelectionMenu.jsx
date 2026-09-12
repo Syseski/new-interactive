@@ -1422,7 +1422,7 @@ const AdditionMathIcon = () => (
           <div className="bg-gradient-to-r from-rose-400 via-pink-400 to-rose-400 text-white font-extrabold tracking-wider text-[11px] sm:text-xs md:text-sm px-4 sm:px-8 py-0.5 sm:py-1 shadow-md border-y-2 border-white uppercase flex items-center gap-1.5">
             <Sparkles className="w-3 h-3 text-yellow-200" />
             <span>
-              {selectedSubject === 'numerasi' ? 'Pilih Permainan Matematik' : 'Pilih Permainan Literasi'}
+              {selectedSubject === 'numerasi' ? 'Pilih Permainan Numerasi' : 'Pilih Permainan Literasi'}
             </span>
             <Sparkles className="w-3 h-3 text-yellow-200" />
           </div>

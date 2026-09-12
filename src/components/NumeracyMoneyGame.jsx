@@ -27,6 +27,7 @@ import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllust
 
 // --- AUTHENTIC MALAYSIAN MONEY SVG RENDERER ---
 export function MoneyRenderer({ item, size = 'md', className = '' }) {
+  if (!item) return null;
   const { type, value, label } = item;
 
   // Sizes for Coins
@@ -327,10 +328,15 @@ export const MONEY_SETS = [
         questionText: 'Berapakah jumlah wang ini? (20 sen + 20 sen + 10 sen)',
         spokenText: 'Dua puluh sen tambah dua puluh sen tambah sepuluh sen. Berapakah jumlahnya?',
         displayMoney: [MONEY_ITEMS.coin_20sen, MONEY_ITEMS.coin_20sen, MONEY_ITEMS.coin_10sen],
-        answerLabel: '50 Sen',
+        answerId: 'opt_50sen',
+        answerName: '50 Sen',
         answerSpeech: 'Lima puluh sen',
-        optionsText: ['40 Sen', '50 Sen', '60 Sen', '30 Sen'],
-        correctIndex: 1,
+        options: [
+          { id: 'opt_40sen', label: '40 Sen', speech: 'Empat puluh sen', badgeColor: 'bg-amber-400' },
+          { id: 'opt_50sen', label: '50 Sen', speech: 'Lima puluh sen', badgeColor: 'bg-emerald-500' },
+          { id: 'opt_60sen', label: '60 Sen', speech: 'Enam puluh sen', badgeColor: 'bg-sky-500' },
+          { id: 'opt_30sen', label: '30 Sen', speech: 'Tiga puluh sen', badgeColor: 'bg-rose-400' },
+        ],
       },
       {
         id: 'q2',
@@ -338,10 +344,15 @@ export const MONEY_SETS = [
         questionText: 'Berapakah jumlah wang ini? (RM 1 + RM 1 + RM 1)',
         spokenText: 'Satu Ringgit tambah Satu Ringgit tambah Satu Ringgit. Berapakah jumlahnya?',
         displayMoney: [MONEY_ITEMS.note_rm1, MONEY_ITEMS.note_rm1, MONEY_ITEMS.note_rm1],
-        answerLabel: 'RM 3',
+        answerId: 'opt_rm3',
+        answerName: 'RM 3',
         answerSpeech: 'Tiga Ringgit',
-        optionsText: ['RM 2', 'RM 3', 'RM 4', 'RM 5'],
-        correctIndex: 1,
+        options: [
+          { id: 'opt_rm2', label: 'RM 2', speech: 'Dua Ringgit', badgeColor: 'bg-rose-400' },
+          { id: 'opt_rm3', label: 'RM 3', speech: 'Tiga Ringgit', badgeColor: 'bg-emerald-500' },
+          { id: 'opt_rm4', label: 'RM 4', speech: 'Empat Ringgit', badgeColor: 'bg-sky-500' },
+          { id: 'opt_rm5', label: 'RM 5', speech: 'Lima Ringgit', badgeColor: 'bg-amber-400' },
+        ],
       },
       {
         id: 'q3',
@@ -349,10 +360,15 @@ export const MONEY_SETS = [
         questionText: 'Berapakah jumlah wang ini? (50 sen + 20 sen)',
         spokenText: 'Lima puluh sen tambah dua puluh sen. Berapakah jumlahnya?',
         displayMoney: [MONEY_ITEMS.coin_50sen, MONEY_ITEMS.coin_20sen],
-        answerLabel: '70 Sen',
+        answerId: 'opt_70sen',
+        answerName: '70 Sen',
         answerSpeech: 'Tujuh puluh sen',
-        optionsText: ['60 Sen', '70 Sen', '80 Sen', '50 Sen'],
-        correctIndex: 1,
+        options: [
+          { id: 'opt_60sen', label: '60 Sen', speech: 'Enam puluh sen', badgeColor: 'bg-amber-400' },
+          { id: 'opt_70sen', label: '70 Sen', speech: 'Tujuh puluh sen', badgeColor: 'bg-emerald-500' },
+          { id: 'opt_80sen', label: '80 Sen', speech: 'Lapan puluh sen', badgeColor: 'bg-sky-500' },
+          { id: 'opt_50sen', label: '50 Sen', speech: 'Lima puluh sen', badgeColor: 'bg-rose-400' },
+        ],
       },
       {
         id: 'q4',
@@ -360,10 +376,15 @@ export const MONEY_SETS = [
         questionText: 'Berapakah jumlah wang ini? (RM 5 + RM 1)',
         spokenText: 'Lima Ringgit tambah Satu Ringgit. Berapakah jumlahnya?',
         displayMoney: [MONEY_ITEMS.note_rm5, MONEY_ITEMS.note_rm1],
-        answerLabel: 'RM 6',
+        answerId: 'opt_rm6',
+        answerName: 'RM 6',
         answerSpeech: 'Enam Ringgit',
-        optionsText: ['RM 5', 'RM 6', 'RM 7', 'RM 4'],
-        correctIndex: 1,
+        options: [
+          { id: 'opt_rm5', label: 'RM 5', speech: 'Lima Ringgit', badgeColor: 'bg-amber-400' },
+          { id: 'opt_rm6', label: 'RM 6', speech: 'Enam Ringgit', badgeColor: 'bg-emerald-500' },
+          { id: 'opt_rm7', label: 'RM 7', speech: 'Tujuh Ringgit', badgeColor: 'bg-sky-500' },
+          { id: 'opt_rm4', label: 'RM 4', speech: 'Empat Ringgit', badgeColor: 'bg-rose-400' },
+        ],
       },
       {
         id: 'q5',
@@ -371,10 +392,15 @@ export const MONEY_SETS = [
         questionText: 'Berapakah jumlah wang ini? (RM 5 + RM 5)',
         spokenText: 'Lima Ringgit tambah Lima Ringgit. Berapakah jumlahnya?',
         displayMoney: [MONEY_ITEMS.note_rm5, MONEY_ITEMS.note_rm5],
-        answerLabel: 'RM 10',
+        answerId: 'opt_rm10',
+        answerName: 'RM 10',
         answerSpeech: 'Sepuluh Ringgit',
-        optionsText: ['RM 8', 'RM 9', 'RM 10', 'RM 12'],
-        correctIndex: 2,
+        options: [
+          { id: 'opt_rm8', label: 'RM 8', speech: 'Lapan Ringgit', badgeColor: 'bg-amber-400' },
+          { id: 'opt_rm9', label: 'RM 9', speech: 'Sembilan Ringgit', badgeColor: 'bg-rose-400' },
+          { id: 'opt_rm10', label: 'RM 10', speech: 'Sepuluh Ringgit', badgeColor: 'bg-emerald-500' },
+          { id: 'opt_rm12', label: 'RM 12', speech: 'Dua belas Ringgit', badgeColor: 'bg-sky-500' },
+        ],
       },
       {
         id: 'q6',
@@ -382,10 +408,15 @@ export const MONEY_SETS = [
         questionText: 'Berapakah jumlah wang ini? (50 sen + 50 sen)',
         spokenText: 'Lima puluh sen tambah lima puluh sen. Berapakah jumlahnya?',
         displayMoney: [MONEY_ITEMS.coin_50sen, MONEY_ITEMS.coin_50sen],
-        answerLabel: 'RM 1 (100 Sen)',
+        answerId: 'opt_rm1',
+        answerName: 'RM 1 (100 Sen)',
         answerSpeech: 'Satu Ringgit atau seratus sen',
-        optionsText: ['80 Sen', '90 Sen', 'RM 1 (100 Sen)', '70 Sen'],
-        correctIndex: 2,
+        options: [
+          { id: 'opt_80sen', label: '80 Sen', speech: 'Lapan puluh sen', badgeColor: 'bg-amber-400' },
+          { id: 'opt_90sen', label: '90 Sen', speech: 'Sembilan puluh sen', badgeColor: 'bg-rose-400' },
+          { id: 'opt_rm1', label: 'RM 1 (100 Sen)', speech: 'Satu Ringgit', badgeColor: 'bg-emerald-500' },
+          { id: 'opt_70sen', label: '70 Sen', speech: 'Tujuh puluh sen', badgeColor: 'bg-sky-500' },
+        ],
       },
     ],
   },
@@ -538,21 +569,10 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
 
     setSelectedAnswer(opt);
 
-    // Check correctness based on mode
-    let isCorrect = false;
-    let spokenFeedback = '';
-
-    if (currentQ.mode === 'identify' || currentQ.mode === 'shop') {
-      isCorrect = opt.id === currentQ.answerId;
-      spokenFeedback = isCorrect
-        ? `Tepat sekali! Ini ialah ${currentQ.answerName}!`
-        : `Cuba lagi! Itu bukan ${currentQ.answerName}.`;
-    } else if (currentQ.mode === 'count_total') {
-      isCorrect = opt === currentQ.optionsText[currentQ.correctIndex];
-      spokenFeedback = isCorrect
-        ? `Tahniah! Jumlahnya ialah ${currentQ.answerSpeech}!`
-        : `Cuba lagi! Kira semula jumlah duit tersebut.`;
-    }
+    const isCorrect = opt.id === currentQ.answerId;
+    const spokenFeedback = isCorrect
+      ? `Tahniah! Jawapannya ialah ${currentQ.answerName}!`
+      : `Cuba lagi! Itu bukan ${currentQ.answerName}.`;
 
     if (isCorrect) {
       // Correct!
@@ -596,7 +616,7 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
       // Wrong
       playOopsSound();
       setFeedbackStatus('wrong');
-      setWrongChoice(typeof opt === 'string' ? opt : opt.id);
+      setWrongChoice(opt.id);
       speakMalayText(spokenFeedback);
 
       setTimeout(() => {
@@ -867,6 +887,9 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
                   {selectedAnswer ? (
                     <div className="flex flex-col items-center animate-pop p-1">
                       <MoneyRenderer item={selectedAnswer} size={orientation === 'portrait' ? 'sm' : 'md'} />
+                      <span className="text-xs font-black text-slate-800 mt-1 font-['Fredoka']">
+                        {selectedAnswer.label}
+                      </span>
                     </div>
                   ) : (
                     <div className="flex flex-col items-center text-teal-500">
@@ -880,11 +903,11 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
               </div>
             )}
 
-            {/* 2. COUNT TOTAL MODE (DISPLAY COINS/NOTES IN WALLET) */}
+            {/* 2. COUNT TOTAL MODE (DISPLAY COINS/NOTES IN WALLET + TARGET VALUE SLOT) */}
             {currentQ.mode === 'count_total' && (
-              <div className="flex flex-col items-center justify-center my-2 w-full">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 my-2 w-full">
                 {/* Visual Wallet Display */}
-                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 p-3 rounded-2xl bg-amber-100/70 border-2 border-amber-300 shadow-sm max-w-lg">
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 p-3 rounded-2xl bg-amber-100/80 border-2 border-amber-300 shadow-sm max-w-xs sm:max-w-sm">
                   {currentQ.displayMoney.map((m, mIdx) => (
                     <div
                       key={mIdx}
@@ -900,12 +923,41 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
                   ))}
                 </div>
 
-                {/* Placed Answer Badge */}
-                {selectedAnswer && (
-                  <div className="mt-3 px-4 py-1.5 rounded-full bg-white border-2 border-teal-400 shadow text-sm sm:text-base font-black text-teal-800 font-['Fredoka'] animate-pop">
-                    Pilihan Anda: {selectedAnswer}
-                  </div>
-                )}
+                <span className="text-2xl sm:text-3xl font-black text-teal-600">➔</span>
+
+                {/* Target Total Slot */}
+                <div
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  className={`
+                    w-28 h-24 sm:w-36 sm:h-28 md:w-44 md:h-32 rounded-2xl flex flex-col items-center justify-center border-3 transition-all duration-300
+                    ${
+                      feedbackStatus === 'correct'
+                        ? 'bg-emerald-100/90 border-emerald-500 shadow-lg scale-105'
+                        : wrongChoice
+                        ? 'bg-rose-100/90 border-rose-400 animate-shake'
+                        : isDragOver
+                        ? 'bg-amber-100/90 border-amber-400 border-dashed scale-105 shadow-md'
+                        : 'bg-white/90 border-dashed border-teal-400 shadow-inner'
+                    }
+                  `}
+                >
+                  {selectedAnswer ? (
+                    <div className="flex flex-col items-center animate-pop p-2">
+                      <div className="px-3 py-1.5 rounded-xl bg-emerald-500 text-white font-black text-sm sm:text-base font-['Fredoka'] shadow">
+                        {selectedAnswer.label}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center text-teal-500">
+                      <HelpCircle className="w-8 h-8 sm:w-10 sm:h-10 animate-bounce" />
+                      <span className="text-[10px] sm:text-xs font-bold text-teal-700 font-['Fredoka'] text-center">
+                        Pilih Jumlah
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 
@@ -954,6 +1006,9 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
                   {selectedAnswer ? (
                     <div className="flex flex-col items-center animate-pop p-1">
                       <MoneyRenderer item={selectedAnswer} size={orientation === 'portrait' ? 'sm' : 'md'} />
+                      <span className="text-xs font-black text-slate-800 mt-1 font-['Fredoka']">
+                        {selectedAnswer.label}
+                      </span>
                     </div>
                   ) : (
                     <div className="flex flex-col items-center text-teal-500">
@@ -976,7 +1031,7 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
             )}
           </div>
 
-          {/* ANSWER CHOICES BANK (TAP OR DRAG & DROP) */}
+          {/* ANSWER CHOICES BANK (TAP OR DRAG & DROP FOR ALL MODES) */}
           <div className="w-full mt-3 sm:mt-4">
             <div className="flex items-center justify-between mb-1.5 px-1">
               <span className="text-xs font-bold text-slate-600 font-['Fredoka']">
@@ -987,82 +1042,55 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
               </span>
             </div>
 
-            {/* For Identify & Shop Mode: Render Money Items */}
-            {(currentQ.mode === 'identify' || currentQ.mode === 'shop') && (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-                {currentQ.options.map((opt, oIdx) => {
-                  const isSelected = selectedAnswer?.id === opt.id;
-                  const isCorrectOpt = isCurrentQuestionAnswered && opt.id === currentQ.answerId;
-                  const isWrongOpt = wrongChoice === opt.id;
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+              {currentQ.options.map((opt, oIdx) => {
+                const isSelected = selectedAnswer?.id === opt.id;
+                const isCorrectOpt = isCurrentQuestionAnswered && opt.id === currentQ.answerId;
+                const isWrongOpt = wrongChoice === opt.id;
 
-                  return (
-                    <button
-                      key={oIdx}
-                      draggable={feedbackStatus !== 'correct'}
-                      onDragStart={(e) => handleDragStart(e, opt)}
-                      onClick={() => handleSelectOption(opt)}
-                      className={`
-                        relative p-2.5 sm:p-3 rounded-2xl flex flex-col items-center justify-center transition-all cursor-pointer select-none
-                        border-3 active:scale-95
-                        ${
-                          isCorrectOpt
-                            ? 'bg-emerald-100 border-emerald-500 shadow-md scale-102 ring-2 ring-emerald-300'
-                            : isWrongOpt
-                            ? 'bg-rose-100 border-rose-500 animate-shake shadow-md'
-                            : isSelected
-                            ? 'bg-sky-100 border-sky-400 shadow-sm'
-                            : 'bg-white hover:bg-teal-50/70 border-slate-200 hover:border-teal-300 shadow-md hover:shadow-lg'
-                        }
-                      `}
-                    >
+                return (
+                  <button
+                    key={oIdx}
+                    draggable={feedbackStatus !== 'correct'}
+                    onDragStart={(e) => handleDragStart(e, opt)}
+                    onClick={() => handleSelectOption(opt)}
+                    className={`
+                      relative p-2.5 sm:p-3 rounded-2xl flex flex-col items-center justify-center transition-all cursor-pointer select-none
+                      border-3 active:scale-95
+                      ${
+                        isCorrectOpt
+                          ? 'bg-emerald-100 border-emerald-500 shadow-md scale-102 ring-2 ring-emerald-300'
+                          : isWrongOpt
+                          ? 'bg-rose-100 border-rose-500 animate-shake shadow-md'
+                          : isSelected
+                          ? 'bg-sky-100 border-sky-400 shadow-sm'
+                          : 'bg-white hover:bg-teal-50/70 border-slate-200 hover:border-teal-300 shadow-md hover:shadow-lg'
+                      }
+                    `}
+                  >
+                    {/* If item has money renderer type (coin / note), render MoneyRenderer */}
+                    {opt.type ? (
                       <MoneyRenderer item={opt} size={orientation === 'portrait' ? 'sm' : 'md'} />
-                      <span className="text-xs sm:text-sm font-black text-slate-800 mt-1 font-['Fredoka']">
-                        {opt.label}
-                      </span>
-                      {isCorrectOpt && (
-                        <span className="absolute top-1.5 right-1.5 bg-emerald-500 text-white rounded-full p-0.5">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
+                    ) : (
+                      /* If amount badge option (Set 2) */
+                      <div className="w-16 h-12 sm:w-20 sm:h-14 rounded-xl bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center shadow-inner border border-amber-600">
+                        <span className="text-sm sm:text-base font-black text-amber-950 font-['Fredoka']">
+                          {opt.label}
                         </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* For Count Total Mode: Render Amount Text Badges */}
-            {currentQ.mode === 'count_total' && (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-                {currentQ.optionsText.map((textOpt, tIdx) => {
-                  const isSelected = selectedAnswer === textOpt;
-                  const isCorrectOpt = isCurrentQuestionAnswered && tIdx === currentQ.correctIndex;
-                  const isWrongOpt = wrongChoice === textOpt;
-
-                  return (
-                    <button
-                      key={tIdx}
-                      onClick={() => handleSelectOption(textOpt)}
-                      className={`
-                        p-3 sm:p-4 rounded-2xl font-black text-sm sm:text-base md:text-lg transition-all cursor-pointer select-none font-['Fredoka']
-                        border-3 active:scale-95 flex items-center justify-center gap-1.5
-                        ${
-                          isCorrectOpt
-                            ? 'bg-emerald-500 text-white border-emerald-600 shadow-md scale-102'
-                            : isWrongOpt
-                            ? 'bg-rose-500 text-white border-rose-600 animate-shake shadow-md'
-                            : isSelected
-                            ? 'bg-sky-500 text-white border-sky-600'
-                            : 'bg-white text-teal-900 hover:bg-teal-50 border-teal-200 hover:border-teal-400 shadow-md'
-                        }
-                      `}
-                    >
-                      <span>{textOpt}</span>
-                      {isCorrectOpt && <CheckCircle2 className="w-4 h-4 text-white" />}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+                      </div>
+                    )}
+                    <span className="text-xs sm:text-sm font-black text-slate-800 mt-1 font-['Fredoka']">
+                      {opt.label}
+                    </span>
+                    {isCorrectOpt && (
+                      <span className="absolute top-1.5 right-1.5 bg-emerald-500 text-white rounded-full p-0.5">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </main>
