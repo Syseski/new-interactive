@@ -24,7 +24,7 @@ import {
   speakLetterAndWord,
   speakOops,
 } from '../../utils/soundEffects';
-import { PhonicsIllustration, GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
+import { GoldenStarIllustration, ThreeGoldenStarsCluster } from './PhonicsIllustration';
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
@@ -469,9 +469,9 @@ export default function LetterDrawingGame({ orientation, initialLetter, onBackTo
         </div>
 
         {/* Word and Illustrated Drawing Context */}
-        <div className="flex items-center gap-2 bg-amber-50/90 px-2.5 py-1 rounded-xl border border-amber-200 shadow-xs">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-white rounded-lg shadow-xs p-1 border border-amber-200/80 flex-shrink-0">
-            <PhonicsIllustration letter={currentLetter} size={36} className="w-7 h-7 sm:w-8 sm:h-8" />
+        <div className="flex items-center gap-2 bg-amber-50/90 px-2.5 py-1.5 rounded-xl border border-amber-200 shadow-xs">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-xs border border-amber-200/80 flex-shrink-0">
+            <span className="text-2xl sm:text-3xl select-none">{phonics.emoji}</span>
           </div>
           <div className="text-left">
             <span className="text-[10px] sm:text-xs text-slate-500 font-semibold block leading-none">Contoh:</span>
@@ -599,8 +599,8 @@ export default function LetterDrawingGame({ orientation, initialLetter, onBackTo
                   <span className="text-base sm:text-lg font-black font-['Fredoka']">
                     Tahniah! Betul!
                   </span>
-                  <div className="w-6 h-6 bg-white rounded-full p-0.5 flex items-center justify-center shadow-xs">
-                    <PhonicsIllustration letter={currentLetter} size={20} className="w-5 h-5" />
+                  <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-xs">
+                    <span className="text-base select-none">{phonics.emoji}</span>
                   </div>
                 </div>
 
