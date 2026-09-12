@@ -1348,7 +1348,7 @@ const AdditionMathIcon = () => (
           <button
             onClick={() => handleSubjectSwitch('literasi')}
             className={`
-              flex items-center gap-1.5 px-3.5 sm:px-5 py-1 sm:py-1.5 rounded-full font-black text-xs sm:text-sm md:text-base font-['Fredoka'] transition-all cursor-pointer
+              px-4 sm:px-6 py-1 sm:py-1.5 rounded-full font-black text-xs sm:text-sm md:text-base font-['Fredoka'] transition-all cursor-pointer
               ${
                 selectedSubject === 'literasi'
                   ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-md scale-105 ring-2 ring-sky-300'
@@ -1356,14 +1356,13 @@ const AdditionMathIcon = () => (
               }
             `}
           >
-            <span>📚</span>
             <span>Literasi</span>
           </button>
 
           <button
             onClick={() => handleSubjectSwitch('numerasi')}
             className={`
-              flex items-center gap-1.5 px-3.5 sm:px-5 py-1 sm:py-1.5 rounded-full font-black text-xs sm:text-sm md:text-base font-['Fredoka'] transition-all cursor-pointer
+              px-4 sm:px-6 py-1 sm:py-1.5 rounded-full font-black text-xs sm:text-sm md:text-base font-['Fredoka'] transition-all cursor-pointer
               ${
                 selectedSubject === 'numerasi'
                   ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md scale-105 ring-2 ring-emerald-300'
@@ -1371,7 +1370,6 @@ const AdditionMathIcon = () => (
               }
             `}
           >
-            <span>🔢</span>
             <span>Numerasi</span>
           </button>
         </div>
