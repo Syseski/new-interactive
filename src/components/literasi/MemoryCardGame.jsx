@@ -421,18 +421,10 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
       </div>
 
       {/* Bottom Mascot Guidance Bar */}
-      <div className="w-full max-w-2xl bg-white/95 rounded-2xl px-4 py-2 shadow-md border-2 border-amber-300 flex items-center justify-between gap-2 z-10">
+      <div className="w-full max-w-2xl bg-white/95 rounded-2xl px-4 py-2 shadow-md border-2 border-amber-300 flex items-center justify-center gap-2 z-10">
         <p className="text-xs sm:text-sm font-bold text-slate-700 leading-tight">
           💡 {mascotTip}
         </p>
-
-        <button
-          onClick={handleStartNewGame}
-          className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs rounded-xl border border-slate-300 transition-all active:scale-95"
-        >
-          <RotateCcw className="w-3.5 h-3.5 text-amber-600" />
-          <span>Mula Semula</span>
-        </button>
       </div>
 
       {/* Victory Celebration Modal */}
