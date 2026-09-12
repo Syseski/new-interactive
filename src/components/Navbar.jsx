@@ -93,6 +93,11 @@ export default function Navbar({
               🔢 9. Cabaran Sifir
             </span>
           )}
+          {activeGame === 'num_subtraction' && (
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-purple-500/20 text-purple-300 border border-purple-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 10. Tolak Ceria
+            </span>
+          )}
         </div>
 
         {/* Center: Contextual Mode & Progress (Only for Game 1) */}

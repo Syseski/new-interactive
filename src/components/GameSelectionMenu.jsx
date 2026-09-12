@@ -1272,16 +1272,16 @@ const AdditionMathIcon = () => (
     {
       id: 10,
       number: '10',
-      title: 'Silang Nombor',
-      subtitle: 'Matematik Pintar',
-      active: false,
-      gameId: 'num_crossword',
+      title: 'Tolak Ceria',
+      subtitle: 'Operasi Tolak',
+      active: true,
+      gameId: 'num_subtraction',
       numColor: 'from-purple-500 to-indigo-600 border-purple-300 text-white',
       titleColor: 'text-purple-600',
       bgHover: 'hover:bg-purple-50/90 hover:border-purple-400 hover:shadow-md',
       cardBorder: 'border-purple-300/80',
       cardBg: 'bg-purple-50/60',
-      icon: <MathCrosswordIcon />,
+      icon: <SubtractMathIcon />,
     },
   ];
 
