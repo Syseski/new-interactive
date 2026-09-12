@@ -64,7 +64,7 @@ export default function LetterDrawingGame({ orientation, initialLetter, onBackTo
   const [brushSize, setBrushSize] = useState(18);
   const [isEraser, setIsEraser] = useState(false);
   const [isUpperCase, setIsUpperCase] = useState(false);
-  const [toleranceMode, setToleranceMode] = useState('sederhana'); // 'santai', 'sederhana', 'ketat'
+  const toleranceMode = 'ketat'; // Tetapkan ketelitian garisan kepada Ketat sahaja
 
   // Drawing assessment state
   const [hasDrawn, setHasDrawn] = useState(false);
@@ -110,10 +110,8 @@ export default function LetterDrawingGame({ orientation, initialLetter, onBackTo
     mCtx.textAlign = 'center';
     mCtx.textBaseline = 'middle';
 
-    // Allowable corridor thickness based on tolerance mode
-    let corridorWidth = 48;
-    if (toleranceMode === 'santai') corridorWidth = 68;
-    if (toleranceMode === 'ketat') corridorWidth = 32;
+    // Allowable corridor thickness for Ketat mode
+    const corridorWidth = 32;
 
     // Draw dilated stroke to create the boundary corridor
     mCtx.strokeStyle = '#000000';
@@ -489,39 +487,6 @@ export default function LetterDrawingGame({ orientation, initialLetter, onBackTo
             <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
-
-        {/* Tolerance Level (Santai / Standard / Ketat) */}
-        <div className="flex items-center gap-1.5">
-          <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-300 text-[11px] font-semibold">
-            <button
-              onClick={() => setToleranceMode('santai')}
-              className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
-                toleranceMode === 'santai' ? 'bg-amber-400 text-slate-900 font-bold' : 'text-slate-500'
-              }`}
-              title="Zon garisan lebih luas untuk kanak-kanak kecil"
-            >
-              Santai
-            </button>
-            <button
-              onClick={() => setToleranceMode('sederhana')}
-              className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
-                toleranceMode === 'sederhana' ? 'bg-amber-400 text-slate-900 font-bold' : 'text-slate-500'
-              }`}
-              title="Ketepatan biasa"
-            >
-              Standard
-            </button>
-            <button
-              onClick={() => setToleranceMode('ketat')}
-              className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
-                toleranceMode === 'ketat' ? 'bg-amber-400 text-slate-900 font-bold' : 'text-slate-500'
-              }`}
-              title="Ketepatan tinggi (Pro)"
-            >
-              Ketat
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Center Drawing Board Area */}
@@ -581,7 +546,7 @@ export default function LetterDrawingGame({ orientation, initialLetter, onBackTo
                 fontSize: 'clamp(7.5rem, 28vw, 17rem)',
                 fontFamily: "'Fredoka', 'Nunito', sans-serif",
                 lineHeight: 0.8,
-                WebkitTextStroke: `${toleranceMode === 'santai' ? '54px' : toleranceMode === 'ketat' ? '28px' : '40px'} #e2e8f0`,
+                WebkitTextStroke: '28px #e2e8f0',
                 filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.06))',
               }}
             >
