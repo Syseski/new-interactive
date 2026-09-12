@@ -55,7 +55,8 @@ const audioCache = {};
 // Background Music (BGM) Manager
 let bgmAudio = null;
 let bgmEnabled = true;
-let bgmVolume = 0.14; // Softer default BGM volume as requested
+let bgmVolume = 0.08; // Actual audio volume locked at 8%
+let bgmSliderValue = 0.50; // Slider bar default at 50% (middle)
 
 // Voice-over settings
 let voiceEnabled = true;
@@ -124,8 +125,22 @@ export function setBGMEnabled(enabled) {
   }
 }
 
+export function setBGMSliderValue(sliderVal) {
+  bgmSliderValue = Math.max(0, Math.min(1, sliderVal));
+  // 50% slider (0.50) maps directly to 8% actual audio volume (0.08)
+  bgmVolume = bgmSliderValue * 0.16;
+  if (bgmAudio) {
+    bgmAudio.volume = bgmVolume;
+  }
+}
+
+export function getBGMSliderValue() {
+  return bgmSliderValue;
+}
+
 export function setBGMVolume(vol) {
   bgmVolume = Math.max(0, Math.min(1, vol));
+  bgmSliderValue = Math.max(0, Math.min(1, bgmVolume / 0.16));
   if (bgmAudio) {
     bgmAudio.volume = bgmVolume;
   }

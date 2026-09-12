@@ -11,6 +11,8 @@ import {
 import {
   isBGMEnabled,
   setBGMEnabled,
+  getBGMSliderValue,
+  setBGMSliderValue,
   getBGMVolume,
   setBGMVolume,
   isVoiceEnabled,
@@ -24,7 +26,7 @@ import {
 
 export default function SettingsModal({ isOpen, onClose }) {
   const [bgmOn, setBgmOn] = useState(true);
-  const [bgmVol, setBgmVol] = useState(0.14);
+  const [bgmVol, setBgmVol] = useState(0.50);
   const [voiceOn, setVoiceOn] = useState(true);
   const [voiceVol, setVoiceVol] = useState(0.85);
   const [soundOn, setSoundOn] = useState(true);
@@ -33,7 +35,7 @@ export default function SettingsModal({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
       setBgmOn(isBGMEnabled());
-      setBgmVol(getBGMVolume());
+      setBgmVol(getBGMSliderValue());
       setVoiceOn(isVoiceEnabled());
       setVoiceVol(getVoiceVolume());
       setSoundOn(isSoundEnabled());
@@ -52,7 +54,7 @@ export default function SettingsModal({ isOpen, onClose }) {
   const handleChangeBGMVolume = (e) => {
     const val = parseFloat(e.target.value);
     setBgmVol(val);
-    setBGMVolume(val);
+    setBGMSliderValue(val);
     if (val > 0 && !bgmOn) {
       setBgmOn(true);
       setBGMEnabled(true);
@@ -152,8 +154,8 @@ export default function SettingsModal({ isOpen, onClose }) {
                 <input
                   type="range"
                   min="0"
-                  max="0.6"
-                  step="0.02"
+                  max="1"
+                  step="0.01"
                   value={bgmVol}
                   onChange={handleChangeBGMVolume}
                   className="w-full accent-amber-400 cursor-pointer h-1.5 bg-slate-700 rounded-lg"
