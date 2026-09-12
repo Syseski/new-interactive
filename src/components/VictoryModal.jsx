@@ -37,7 +37,6 @@ export default function VictoryModal({ isOpen, onRestart, onClose }) {
             onClick={onClose}
             className="flex-1 py-3 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 font-['Fredoka'] font-bold rounded-2xl shadow-sm hover:shadow transition-all active:scale-95 flex items-center justify-center gap-1.5 text-base cursor-pointer"
           >
-            <span>👁️</span>
             <span>Lihat Jawapan</span>
           </button>
           <button

@@ -1146,7 +1146,7 @@ export default function NumeracyMoneyGame({ orientation, onBackToMenu, onOpenSet
                 }}
                 className="w-full py-2.5 px-4 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-extrabold text-sm sm:text-base font-['Fredoka'] shadow-md transition cursor-pointer flex items-center justify-center gap-2 active:scale-98"
               >
-                <span>👁️ Lihat Jawapan</span>
+                <span>Lihat Jawapan</span>
               </button>
 
               {/* NEXT SET BUTTON (if available) */}

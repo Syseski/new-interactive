@@ -642,7 +642,6 @@ export default function LabelObjectGame({ orientation, onBackToMenu, onOpenSetti
                 }}
                 className="w-full py-2.5 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 font-black rounded-xl text-sm shadow-sm transition-all active:scale-95 font-['Fredoka'] cursor-pointer flex items-center justify-center gap-1.5"
               >
-                <span>👁️</span>
                 <span>Lihat Jawapan</span>
               </button>
 

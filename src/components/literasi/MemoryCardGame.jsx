@@ -467,7 +467,6 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
                 }}
                 className="w-full py-3 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 font-['Fredoka'] font-black rounded-2xl shadow-sm transition-all active:scale-95 flex items-center justify-center gap-1.5 text-base cursor-pointer"
               >
-                <span>👁️</span>
                 <span>Lihat Jawapan</span>
               </button>
 

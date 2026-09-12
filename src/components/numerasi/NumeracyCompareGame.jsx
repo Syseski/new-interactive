@@ -779,7 +779,6 @@ export default function NumeracyCompareGame({
                 }}
                 className="w-full sm:flex-1 py-3 px-4 bg-sky-100 hover:bg-sky-200 text-sky-800 rounded-2xl font-['Fredoka'] font-bold text-sm sm:text-base transition-transform active:scale-95 cursor-pointer shadow-sm flex items-center justify-center gap-1.5"
               >
-                <span>👁️</span>
                 <span>Lihat Jawapan</span>
               </button>
 
