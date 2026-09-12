@@ -78,24 +78,29 @@ export default function Navbar({
               🔢 5. Tambah Mudah
             </span>
           )}
+          {activeGame === 'num_subtraction' && (
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-purple-500/20 text-purple-300 border border-purple-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 6. Tolak Ceria
+            </span>
+          )}
+          {activeGame === 'num_compare' && (
+            <span className="hidden sm:inline-flex items-center gap-1.5 bg-violet-500/20 text-violet-300 border border-violet-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
+              🔢 7. Lebih & Kurang
+            </span>
+          )}
           {activeGame === 'num_money' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-teal-500/20 text-teal-300 border border-teal-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 7. Wang Saku
+              🔢 8. Wang Saku
             </span>
           )}
           {activeGame === 'num_time' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-orange-500/20 text-orange-300 border border-orange-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 8. Masa & Waktu
+              🔢 9. Masa & Waktu
             </span>
           )}
           {activeGame === 'num_sifir' && (
             <span className="hidden sm:inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 9. Cabaran Sifir
-            </span>
-          )}
-          {activeGame === 'num_subtraction' && (
-            <span className="hidden sm:inline-flex items-center gap-1.5 bg-purple-500/20 text-purple-300 border border-purple-400/40 px-2.5 py-1 rounded-lg text-xs font-bold font-['Fredoka']">
-              🔢 10. Tolak Ceria
+              🔢 10. Cabaran Sifir
             </span>
           )}
         </div>
