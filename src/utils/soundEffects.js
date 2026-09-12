@@ -283,6 +283,68 @@ export function setRecordedNumberAudio(num, audioUrlOrBlob) {
   recordedNumberAudios[num] = audioUrlOrBlob;
 }
 
+let currentInstructionAudio = null;
+
+// Play custom audio recording for Literacy 3 instruction ("Buka dua kad untuk mencari pasangan huruf besar dan kecil")
+export function playMemoryInstructionAudio(onFallback) {
+  if (!soundEnabled || !voiceEnabled) return;
+
+  const candidateSources = [
+    getAssetUrl('/audio/literasi3_soalan.mp3'),
+    getAssetUrl('/audio/literasi3_instruction.mp3'),
+    getAssetUrl('/audio/memory_instruction.mp3'),
+    getAssetUrl('/audio/soalan_literasi3.mp3'),
+  ];
+
+  try {
+    if (currentInstructionAudio) {
+      currentInstructionAudio.pause();
+      currentInstructionAudio.currentTime = 0;
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+
+    let sourceIndex = 0;
+    const audio = new Audio(candidateSources[0]);
+    audio.volume = voiceVolume;
+    audio.playbackRate = 1.0;
+
+    const tryNextOrFallback = () => {
+      sourceIndex++;
+      if (sourceIndex < candidateSources.length) {
+        audio.src = candidateSources[sourceIndex];
+        audio.play().then(() => {
+          currentInstructionAudio = audio;
+        }).catch(() => {
+          tryNextOrFallback();
+        });
+      } else {
+        if (typeof onFallback === 'function') {
+          onFallback();
+        }
+      }
+    };
+
+    audio.addEventListener('error', tryNextOrFallback);
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          currentInstructionAudio = audio;
+        })
+        .catch(() => {
+          tryNextOrFallback();
+        });
+    }
+  } catch (err) {
+    if (typeof onFallback === 'function') {
+      onFallback();
+    }
+  }
+}
+
 export function getRecordedNumberAudio(num) {
   return recordedNumberAudios[num] || null;
 }

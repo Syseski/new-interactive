@@ -18,6 +18,7 @@ import {
   playOopsSound,
   playVictorySound,
   speakLetter,
+  playMemoryInstructionAudio,
   getBestMalayVoice,
 } from '../../utils/soundEffects';
 
@@ -136,9 +137,8 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
   const [moves, setMoves] = useState(0);
   const [isLocked, setIsLocked] = useState(false);
   const [showVictory, setShowVictory] = useState(false);
-  const [mascotTip, setMascotTip] = useState(
-    'Buka dua kad untuk cari pasangan huruf BESAR & kecil!'
-  );
+  const DEFAULT_INSTRUCTION = 'Buka dua kad untuk mencari pasangan huruf besar dan kecil';
+  const [mascotTip, setMascotTip] = useState(DEFAULT_INSTRUCTION);
 
   const isLandscape = orientation === 'landscape';
 
@@ -155,6 +155,14 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
     }
   };
 
+  // Play custom voice audio for Literacy 3 instruction
+  const handlePlayInstruction = () => {
+    playPopSound();
+    playMemoryInstructionAudio(() => {
+      speakFeedback(mascotTip || DEFAULT_INSTRUCTION);
+    });
+  };
+
   // Start fresh game with 6 brand new random letters
   const handleStartNewGame = useCallback(() => {
     playPopSound();
@@ -165,7 +173,7 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
     setMoves(0);
     setIsLocked(false);
     setShowVictory(false);
-    setMascotTip('Huruf baharu dipilih! Cari pasangan huruf besar dan kecil.');
+    setMascotTip(DEFAULT_INSTRUCTION);
   }, []);
 
   const handleCardClick = (index) => {
@@ -307,8 +315,8 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
 
           {/* Audio read tip */}
           <button
-            onClick={() => speakFeedback(mascotTip)}
-            className="p-1 text-amber-700 hover:text-amber-900"
+            onClick={handlePlayInstruction}
+            className="p-1.5 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full transition-all active:scale-90 shadow-xs cursor-pointer flex items-center justify-center ml-1"
             title="Dengar Arahan"
           >
             <Volume2 className="w-4 h-4" />
@@ -421,10 +429,17 @@ export default function MemoryCardGame({ orientation, onBackToMenu, onOpenSettin
       </div>
 
       {/* Bottom Mascot Guidance Bar */}
-      <div className="w-full max-w-2xl bg-white/95 rounded-2xl px-4 py-2 shadow-md border-2 border-amber-300 flex items-center justify-center gap-2 z-10">
-        <p className="text-xs sm:text-sm font-bold text-slate-700 leading-tight">
+      <div className="w-full max-w-2xl bg-white/95 rounded-2xl px-4 py-2 shadow-md border-2 border-amber-300 flex items-center justify-between gap-2 z-10">
+        <p className="text-xs sm:text-sm font-bold text-slate-700 leading-tight flex-1 text-center">
           💡 {mascotTip}
         </p>
+        <button
+          onClick={handlePlayInstruction}
+          className="p-1.5 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full transition-all active:scale-90 shadow-xs cursor-pointer flex-shrink-0"
+          title="Dengar Arahan"
+        >
+          <Volume2 className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Victory Celebration Modal */}
